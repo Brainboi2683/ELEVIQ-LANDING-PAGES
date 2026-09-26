@@ -1515,21 +1515,78 @@
        TEMPORARY FORM BEHAVIOUR
        ================================================== -->
 
-  <script>
+<script>
 
-    document
-      .getElementById("product1Form")
-      .addEventListener("submit", function(event) {
+const product1Form = document.getElementById("product1Form");
 
-        event.preventDefault();
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxKJ-WoAX0gMCxOmGUUr9ezLIMWPUeXZGBrNTZ7-MCb44l5dpn0kd6mTGSayBPJxZpIQ/exec";
 
-        alert(
-          "Thank you! Your registration interest has been received. ELEVIQ will contact you shortly."
-        );
+product1Form.addEventListener("submit", async function(event) {
 
-      });
+  event.preventDefault();
 
-  </script>
+  const submitButton = product1Form.querySelector(".submit");
 
-</body>
-</html>
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
+
+  const formData = {
+
+    product: "Product 1 — Master Computer & Office Skills — ₦4,980",
+
+    fullName: document.getElementById("fullName").value,
+
+    phone: document.getElementById("phone").value,
+
+    email: document.getElementById("email").value,
+
+    location: document.getElementById("location").value,
+
+    learningMode: document.getElementById("learningMode").value,
+
+    experience: document.getElementById("experience").value,
+
+    message: document.getElementById("message").value
+
+  };
+
+  try {
+
+    await fetch(SCRIPT_URL, {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+
+      body: JSON.stringify(formData)
+
+    });
+
+    alert(
+      "Registration submitted successfully! " +
+      "Thank you for registering for Product 1."
+    );
+
+    product1Form.reset();
+
+  } catch (error) {
+
+    alert(
+      "Something went wrong while submitting your registration. " +
+      "Please check your internet connection and try again."
+    );
+
+    console.error(error);
+
+  } finally {
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit Registration Interest";
+
+  }
+
+});
+
+</script>
