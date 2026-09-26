@@ -1565,13 +1565,114 @@ product1Form.addEventListener("submit", async function(event) {
 
     });
 
-    alert(
-      "Registration submitted successfully! " +
-      "Thank you for registering for Product 1."
-    );
+    product1Form.innerHTML = `
+  <div style="
+    text-align: center;
+    padding: 40px 20px;
+    background: #f8fbff;
+    border-radius: 16px;
+  ">
 
-    product1Form.reset();
+    <div style="font-size: 50px; margin-bottom: 15px;">
+      🎉
+    </div>
 
+    <h2 style="
+      color: #0b2d5c;
+      margin-bottom: 15px;
+    ">
+      Registration Submitted Successfully!
+    </h2>
+
+    <p style="
+      font-size: 16px;
+      line-height: 1.7;
+      color: #444;
+    ">
+      Thank you for registering for
+      <strong>ELEVIQ Product 1 — Master Computer & Office Skills.</strong>
+      <br><br>
+      We have received your registration details successfully.
+    </p>
+
+    <div style="
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 25px auto;
+      max-width: 500px;
+    ">
+
+      <h3 style="color: #0b2d5c;">
+        📲 Want to speak with us directly?
+      </h3>
+
+      <p style="
+        color: #555;
+        line-height: 1.6;
+      ">
+        If you would like to complete your registration,
+        make payment, or ask any questions about the course,
+        you can contact ELEVIQ directly on WhatsApp.
+      </p>
+
+      <a
+        href="https://wa.me/2349011582752"
+        target="_blank"
+        style="
+          display: block;
+          margin: 12px auto;
+          padding: 14px 20px;
+          background: #25D366;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: bold;
+          max-width: 280px;
+        "
+      >
+        💬 WhatsApp 09011582752
+      </a>
+
+      <a
+        href="https://wa.me/2348115524304"
+        target="_blank"
+        style="
+          display: block;
+          margin: 12px auto;
+          padding: 14px 20px;
+          background: #25D366;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: bold;
+          max-width: 280px;
+        "
+      >
+        💬 WhatsApp 08115524304
+      </a>
+
+    </div>
+
+    <p style="
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    ">
+      You can also wait for our team to contact you
+      using the phone/WhatsApp number you provided.
+    </p>
+
+    <p style="
+      margin-top: 20px;
+      font-weight: bold;
+      color: #0b2d5c;
+    ">
+      Thank you for choosing ELEVIQ! 🚀
+    </p>
+
+  </div>
+`;
   } catch (error) {
 
     alert(
