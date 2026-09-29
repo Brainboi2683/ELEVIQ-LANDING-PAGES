@@ -39,6 +39,8 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 10;
     }
 
     .logo {
@@ -52,6 +54,12 @@
       padding: 10px 18px;
       border-radius: 7px;
       font-weight: bold;
+      transition: 0.25s ease;
+    }
+
+    .header-btn:hover {
+      background: #164f91;
+      transform: translateY(-1px);
     }
 
     .hero {
@@ -93,12 +101,21 @@
       padding: 15px 25px;
       border-radius: 8px;
       font-weight: bold;
+      transition: 0.25s ease;
+    }
+
+    .cta:hover {
+      background: #1fb958;
+      transform: translateY(-2px);
     }
 
     .hero-image {
       width: 100%;
+      max-height: 430px;
+      object-fit: cover;
       border-radius: 15px;
       display: block;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     }
 
     .section {
@@ -124,30 +141,81 @@
       font-size: 17px;
     }
 
+    /* =========================
+       COURSE CARDS
+    ========================== */
+
     .courses {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 22px;
       margin-top: 35px;
     }
 
     .course-card {
       background: white;
-      padding: 25px 20px;
-      border-radius: 12px;
+      border-radius: 14px;
+      overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.07);
       text-align: center;
+      border: 1px solid #e7edf5;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(11,45,92,0.15);
+    }
+
+    .course-image-wrap {
+      width: 100%;
+      height: 190px;
+      overflow: hidden;
+      background: #eaf2fb;
+    }
+
+    .course-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .course-card:hover .course-image {
+      transform: scale(1.05);
+    }
+
+    .course-content {
+      padding: 22px 18px 25px;
     }
 
     .course-card h3 {
       color: #0b2d5c;
       margin-bottom: 10px;
+      font-size: 21px;
     }
 
     .course-card p {
       color: #555;
       font-size: 14px;
+      line-height: 1.65;
     }
+
+    .course-tag {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 5px 11px;
+      border-radius: 20px;
+      background: #eaf2fb;
+      color: #0b2d5c;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* =========================
+       SKILLS
+    ========================== */
 
     .benefits {
       display: grid;
@@ -167,6 +235,10 @@
       color: #0b2d5c;
     }
 
+    /* =========================
+       OFFER
+    ========================== */
+
     .offer {
       background: #0b2d5c;
       color: white;
@@ -185,6 +257,10 @@
       font-weight: bold;
       margin: 15px 0 25px;
     }
+
+    /* =========================
+       REGISTRATION
+    ========================== */
 
     .register {
       background: white;
@@ -221,6 +297,14 @@
       font-family: inherit;
     }
 
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #164f91;
+      box-shadow: 0 0 0 3px rgba(22,79,145,0.1);
+    }
+
     .form-group textarea {
       min-height: 120px;
       resize: vertical;
@@ -236,10 +320,11 @@
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.25s ease;
     }
 
     .submit:hover {
-      opacity: 0.92;
+      background: #164f91;
     }
 
     .faq-item {
@@ -262,8 +347,21 @@
       padding: 30px 20px;
     }
 
-    @media (max-width: 850px) {
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================== */
 
+    @media (max-width: 950px) {
+      .courses {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .course-image-wrap {
+        height: 210px;
+      }
+    }
+
+    @media (max-width: 850px) {
       .hero-container {
         grid-template-columns: 1fr;
       }
@@ -272,16 +370,18 @@
         font-size: 36px;
       }
 
-      .courses {
-        grid-template-columns: repeat(2, 1fr);
+      .hero-image {
+        max-height: 400px;
       }
-
     }
 
     @media (max-width: 550px) {
-
       header {
         padding: 12px 5%;
+      }
+
+      .logo {
+        width: 105px;
       }
 
       .header-btn {
@@ -314,10 +414,25 @@
         grid-template-columns: 1fr;
       }
 
+      .course-image-wrap {
+        height: 220px;
+      }
+
+      .course-content {
+        padding: 20px 18px 24px;
+      }
+
       .form-box {
         padding: 22px 17px;
       }
 
+      .offer h2 {
+        font-size: 27px;
+      }
+
+      .offer-price {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
@@ -328,9 +443,7 @@
     Learn practical graphic design skills and build your creative career with ELEVIQ.
   </div>
 
-
   <header>
-
     <a href="https://brainboi2683.github.io/ELEVIQ/">
       <img
         src="https://brainboi2683.github.io/ELEVIQ/eleviq-logo.png"
@@ -342,18 +455,14 @@
     <a href="#register" class="header-btn">
       Register Now
     </a>
-
   </header>
-
 
   <!-- HERO -->
 
   <section class="hero">
-
     <div class="hero-container">
 
       <div>
-
         <h1>
           Product 2 — Graphic Design Mastering
         </h1>
@@ -371,29 +480,22 @@
         <a href="#register" class="cta">
           Enroll Now
         </a>
-
       </div>
 
-
       <div>
-
         <img
           src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1000&q=80"
           alt="Graphic Design"
           class="hero-image"
         >
-
       </div>
 
     </div>
-
   </section>
-
 
   <!-- INTRO -->
 
   <section class="section">
-
     <div class="container">
 
       <h2 class="section-title">
@@ -407,75 +509,144 @@
       </p>
 
     </div>
-
   </section>
-
 
   <!-- COURSES -->
 
   <section class="section">
-
     <div class="container">
 
       <h2 class="section-title">
         What You Will Learn
       </h2>
 
-
       <div class="courses">
 
+        <!-- CORELDRAW -->
+
         <div class="course-card">
-          <h3>CorelDRAW</h3>
-          <p>
-            Learn professional vector design, layouts, flyers,
-            banners, logos and print designs.
-          </p>
+
+          <div class="course-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=85"
+              alt="Graphic design and vector artwork representing CorelDRAW"
+              class="course-image"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="course-content">
+            <h3>CorelDRAW</h3>
+
+            <p>
+              Learn professional vector design, layouts, flyers,
+              banners, logos and print designs.
+            </p>
+
+            <span class="course-tag">
+              Vector & Print Design
+            </span>
+          </div>
+
         </div>
 
+        <!-- PHOTOSHOP -->
 
         <div class="course-card">
-          <h3>Photoshop</h3>
-          <p>
-            Learn photo editing, image manipulation, creative
-            designs and professional visual effects.
-          </p>
+
+          <div class="course-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&w=900&q=85"
+              alt="Creative photo editing representing Photoshop"
+              class="course-image"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="course-content">
+            <h3>Photoshop</h3>
+
+            <p>
+              Learn photo editing, image manipulation, creative
+              designs and professional visual effects.
+            </p>
+
+            <span class="course-tag">
+              Photo Editing
+            </span>
+          </div>
+
         </div>
 
+        <!-- PIXELLAB -->
 
         <div class="course-card">
-          <h3>PixelLab</h3>
-          <p>
-            Create attractive graphics, social media designs,
-            flyers and mobile graphics.
-          </p>
+
+          <div class="course-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=900&q=85"
+              alt="Mobile social media graphic design representing PixelLab"
+              class="course-image"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="course-content">
+            <h3>PixelLab</h3>
+
+            <p>
+              Create attractive graphics, social media designs,
+              flyers and mobile graphics.
+            </p>
+
+            <span class="course-tag">
+              Mobile Design
+            </span>
+          </div>
+
         </div>
 
+        <!-- CANVA -->
 
         <div class="course-card">
-          <h3>Canva</h3>
-          <p>
-            Create professional designs quickly for social media,
-            business, branding and presentations.
-          </p>
+
+          <div class="course-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85"
+              alt="Modern social media and branding designs representing Canva"
+              class="course-image"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="course-content">
+            <h3>Canva</h3>
+
+            <p>
+              Create professional designs quickly for social media,
+              business, branding and presentations.
+            </p>
+
+            <span class="course-tag">
+              Social & Brand Design
+            </span>
+          </div>
+
         </div>
 
       </div>
 
     </div>
-
   </section>
-
 
   <!-- SKILLS -->
 
   <section class="section">
-
     <div class="container">
 
       <h2 class="section-title">
         Skills You Can Build
       </h2>
-
 
       <div class="benefits">
 
@@ -487,7 +658,6 @@
           </p>
         </div>
 
-
         <div class="benefit">
           🏷️ <strong>Branding</strong>
           <p>
@@ -495,7 +665,6 @@
             businesses build their identity.
           </p>
         </div>
-
 
         <div class="benefit">
           🖨️ <strong>Printing Designs</strong>
@@ -505,7 +674,6 @@
           </p>
         </div>
 
-
         <div class="benefit">
           📸 <strong>Photo Editing</strong>
           <p>
@@ -514,7 +682,6 @@
           </p>
         </div>
 
-
         <div class="benefit">
           📱 <strong>Social Media Designs</strong>
           <p>
@@ -522,7 +689,6 @@
             advertisements and online promotion.
           </p>
         </div>
-
 
         <div class="benefit">
           💡 <strong>Creative Designs</strong>
@@ -535,14 +701,11 @@
       </div>
 
     </div>
-
   </section>
-
 
   <!-- OFFER -->
 
   <section class="section">
-
     <div class="container">
 
       <div class="offer">
@@ -567,9 +730,7 @@
       </div>
 
     </div>
-
   </section>
-
 
   <!-- REGISTRATION -->
 
@@ -581,13 +742,11 @@
         Register for Product 2
       </h2>
 
-
       <div class="form-box">
 
         <form id="product2Form">
 
           <div class="form-group">
-
             <label for="fullName">
               Full Name
             </label>
@@ -599,12 +758,9 @@
               placeholder="Enter your full name"
               required
             >
-
           </div>
 
-
           <div class="form-group">
-
             <label for="phone">
               WhatsApp / Phone Number
             </label>
@@ -616,12 +772,9 @@
               placeholder="Enter your WhatsApp or phone number"
               required
             >
-
           </div>
 
-
           <div class="form-group">
-
             <label for="email">
               Email Address
             </label>
@@ -633,12 +786,9 @@
               placeholder="Enter your email address"
               required
             >
-
           </div>
 
-
           <div class="form-group">
-
             <label for="location">
               Location
             </label>
@@ -650,12 +800,9 @@
               placeholder="City / State"
               required
             >
-
           </div>
 
-
           <div class="form-group">
-
             <label for="learningMode">
               Preferred Learning Mode
             </label>
@@ -665,7 +812,6 @@
               name="learningMode"
               required
             >
-
               <option value="">
                 Select an option
               </option>
@@ -681,14 +827,10 @@
               <option value="Both">
                 Both
               </option>
-
             </select>
-
           </div>
 
-
           <div class="form-group">
-
             <label for="experience">
               Current Design Experience
             </label>
@@ -698,7 +840,6 @@
               name="experience"
               required
             >
-
               <option value="">
                 Select an option
               </option>
@@ -714,14 +855,10 @@
               <option value="Intermediate">
                 Intermediate
               </option>
-
             </select>
-
           </div>
 
-
           <div class="form-group">
-
             <label for="message">
               Additional Message
             </label>
@@ -731,9 +868,7 @@
               name="message"
               placeholder="Any questions or information you would like us to know?"
             ></textarea>
-
           </div>
-
 
           <button
             type="submit"
@@ -750,7 +885,6 @@
 
   </section>
 
-
   <!-- FAQ -->
 
   <section class="section">
@@ -761,9 +895,7 @@
         Frequently Asked Questions
       </h2>
 
-
       <div class="faq-item">
-
         <h3>
           Who is this course for?
         </h3>
@@ -773,12 +905,9 @@
           designers, business owners, students and anyone who wants
           to develop practical graphic design skills.
         </p>
-
       </div>
 
-
       <div class="faq-item">
-
         <h3>
           Can I learn using my smartphone?
         </h3>
@@ -788,12 +917,9 @@
           smartphones, while PC users can also learn CorelDRAW
           and Photoshop.
         </p>
-
       </div>
 
-
       <div class="faq-item">
-
         <h3>
           How much is the course?
         </h3>
@@ -801,12 +927,9 @@
         <p>
           Product 2 — Graphic Design Mastering is ₦7,890.
         </p>
-
       </div>
 
-
       <div class="faq-item">
-
         <h3>
           What happens after I register?
         </h3>
@@ -816,13 +939,11 @@
           You will then be able to contact us directly on WhatsApp
           for the next steps.
         </p>
-
       </div>
 
     </div>
 
   </section>
-
 
   <!-- FINAL CTA -->
 
@@ -853,7 +974,6 @@
 
   </section>
 
-
   <!-- FOOTER -->
 
   <footer>
@@ -868,7 +988,6 @@
 
   </footer>
 
-
   <!-- PRODUCT 2 REGISTRATION SCRIPT -->
 
   <script>
@@ -878,20 +997,15 @@
     const SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbyxKJ-WoAX0gMCxOmGUUr9ezLIMWPUeXZGBrNTZ7-MCb44l5dpn0kd6mTGSayBPJxZpIQ/exec";
 
-
     product2Form.addEventListener("submit", async function(event) {
 
       event.preventDefault();
 
-
       const submitButton =
         product2Form.querySelector(".submit");
 
-
       submitButton.disabled = true;
-
       submitButton.textContent = "Submitting...";
-
 
       const formData = {
 
@@ -921,7 +1035,6 @@
 
       };
 
-
       try {
 
         await fetch(SCRIPT_URL, {
@@ -935,7 +1048,6 @@
           body: JSON.stringify(formData)
 
         });
-
 
         product2Form.innerHTML = `
 
@@ -953,14 +1065,12 @@
               🎉
             </div>
 
-
             <h2 style="
               color:#0b2d5c;
               margin-bottom:15px;
             ">
               Registration Submitted Successfully!
             </h2>
-
 
             <p style="
               font-size:16px;
@@ -979,7 +1089,6 @@
 
             </p>
 
-
             <div style="
               background:white;
               padding:20px;
@@ -988,13 +1097,11 @@
               max-width:500px;
             ">
 
-
               <h3 style="
                 color:#0b2d5c;
               ">
                 📲 Want to speak with us directly?
               </h3>
-
 
               <p style="
                 color:#555;
@@ -1006,7 +1113,6 @@
                 you can contact ELEVIQ directly on WhatsApp.
 
               </p>
-
 
               <a
                 href="https://wa.me/2349011582752?text=Hello%20ELEVIQ,%20I%20just%20registered%20for%20your%20course,%20Product%202%20%E2%80%94%20Graphic%20Design%20Mastering.%20I%20would%20like%20to%20get%20more%20information%20about%20the%20next%20steps.%20Thank%20you."
@@ -1026,7 +1132,6 @@
                 💬 WhatsApp 09011582752
               </a>
 
-
               <a
                 href="https://wa.me/2348115524304?text=Hello%20ELEVIQ,%20I%20just%20registered%20for%20your%20course,%20Product%202%20%E2%80%94%20Graphic%20Design%20Mastering.%20I%20would%20like%20to%20get%20more%20information%20about%20the%20next%20steps.%20Thank%20you."
                 target="_blank"
@@ -1045,9 +1150,7 @@
                 💬 WhatsApp 08115524304
               </a>
 
-
             </div>
-
 
             <p style="
               color:#666;
@@ -1060,7 +1163,6 @@
 
             </p>
 
-
             <p style="
               margin-top:20px;
               font-weight:bold;
@@ -1071,11 +1173,9 @@
 
             </p>
 
-
           </div>
 
         `;
-
 
       } catch (error) {
 
