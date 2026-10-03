@@ -1,239 +1,1084 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Product 4 — Data Analysis | ELEVIQ</title>
-<meta name="description" content="Learn Excel for Data Analysis, SQL, Power BI and Tableau with ELEVIQ. Practical data analysis training with certification and coaching.">
+
+<meta name="description" content="ELEVIQ Product 4 Data Analysis — Excel, SQL, Power BI and Tableau.">
+
 <style>
 :root{
-  --blue:#0757d5;
-  --dark:#071a35;
-  --light:#f4f8ff;
-  --text:#26364d;
-  --muted:#66758a;
-  --white:#fff;
-  --border:#dfe8f5;
-  --shadow:0 14px 40px rgba(7,40,90,.10);
+    --blue:#1769e0;
+    --dark:#0b3f98;
+    --navy:#071a35;
+    --light:#f4f8ff;
+    --text:#26364d;
+    --muted:#66758a;
+    --border:#dfe8f5;
+    --white:#fff;
+    --shadow:0 14px 40px rgba(7,40,90,.10);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff;line-height:1.6}
-a{text-decoration:none;color:inherit}
-.topbar{background:var(--dark);color:#fff;text-align:center;padding:9px 15px;font-size:13px}
-header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--border)}
-.nav{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:15px 20px}
-.logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:800;color:var(--blue)}
-.logo-mark{width:38px;height:38px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:900}
-.nav-links{display:flex;gap:25px;align-items:center;font-size:14px;font-weight:600}
-.nav-btn{background:var(--blue);color:#fff;padding:11px 18px;border-radius:8px}
-.hero{background:linear-gradient(135deg,#eef5ff 0%,#fff 60%);padding:75px 20px 65px}
-.hero-grid{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
-.badge{display:inline-block;background:#e2edff;color:var(--blue);padding:8px 14px;border-radius:30px;font-size:13px;font-weight:800;margin-bottom:18px}
-h1{font-size:clamp(38px,5vw,64px);line-height:1.06;color:var(--dark);margin-bottom:20px}
-.hero p{font-size:18px;color:var(--muted);max-width:650px;margin-bottom:28px}
-.price{font-size:34px;font-weight:900;color:var(--blue);margin-bottom:20px}
-.price small{font-size:14px;color:var(--muted);font-weight:500}
-.cta{display:inline-block;background:var(--blue);color:#fff;padding:14px 24px;border-radius:9px;font-weight:800;box-shadow:0 8px 20px rgba(7,87,213,.22)}
-.hero-card{background:#0b1f3a;border-radius:18px;padding:22px;box-shadow:var(--shadow);color:#fff}
-.dashboard{background:#fff;border-radius:12px;padding:15px;color:var(--dark)}
-.dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
-.dash-title{font-weight:800}
-.dash-pill{font-size:11px;background:#e8f1ff;color:var(--blue);padding:5px 9px;border-radius:20px}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.metric{background:#f5f8fc;border:1px solid #e5ebf4;padding:11px;border-radius:9px}
-.metric strong{display:block;font-size:19px;color:var(--blue)}
-.metric span{font-size:10px;color:#718096}
-.chart{height:145px;margin-top:14px;background:linear-gradient(180deg,#f5f8fc,#fff);border:1px solid #e5ebf4;border-radius:9px;position:relative;overflow:hidden}
-.chart-bars{height:100%;display:flex;align-items:end;gap:10px;padding:18px}
-.bar{flex:1;background:var(--blue);border-radius:5px 5px 0 0;opacity:.85}
-section{padding:75px 20px}
-.container{max-width:1100px;margin:auto}
-.section-head{text-align:center;max-width:720px;margin:0 auto 45px}
-.section-head h2{font-size:36px;color:var(--dark);margin-bottom:10px}
-.section-head p{color:var(--muted)}
-.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.tool{border:1px solid var(--border);border-radius:15px;padding:25px;background:#fff;box-shadow:0 7px 24px rgba(10,40,80,.05)}
-.tool-icon{width:55px;height:55px;border-radius:13px;background:#e9f2ff;color:var(--blue);display:grid;place-items:center;font-weight:900;font-size:17px;margin-bottom:17px}
-.tool h3{color:var(--dark);margin-bottom:8px}
-.tool p{font-size:14px;color:var(--muted)}
-.alt{background:var(--light)}
-.skills{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.skill{background:#fff;border-radius:13px;padding:22px;border:1px solid var(--border)}
-.skill strong{display:block;color:var(--dark);margin-bottom:7px}
-.skill span{color:var(--muted);font-size:14px}
-.offer{background:var(--dark);color:#fff;border-radius:22px;padding:45px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
-.offer h2{font-size:35px;line-height:1.15;margin-bottom:12px}
-.offer p{color:#cbd7e8}
-.offer-list{display:grid;gap:12px}
-.offer-list div{background:rgba(255,255,255,.08);padding:12px 15px;border-radius:8px}
-.form-wrap{max-width:760px;margin:auto;background:#fff;border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow)}
-form{display:grid;gap:15px}
-label{font-size:13px;font-weight:700;color:var(--dark)}
-input,select,textarea{width:100%;padding:13px 14px;border:1px solid #cfdbea;border-radius:8px;font:inherit;outline:none}
-input:focus,select:focus,textarea:focus{border-color:var(--blue)}
-button{border:0;cursor:pointer;font:inherit}
-.submit{background:var(--blue);color:#fff;padding:14px;border-radius:8px;font-weight:800}
-.notice{font-size:12px;color:var(--muted);text-align:center}
-.faq{max-width:850px;margin:auto;display:grid;gap:12px}
-details{border:1px solid var(--border);border-radius:10px;padding:17px 20px;background:#fff}
-summary{cursor:pointer;font-weight:800;color:var(--dark)}
-details p{color:var(--muted);margin-top:10px;font-size:14px}
-footer{background:#06162c;color:#fff;padding:35px 20px;text-align:center}
-footer p{color:#aebdd1;font-size:13px}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--text);
+    line-height:1.6;
+    background:#fff;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* TOP BAR */
+.topbar{
+    background:var(--navy);
+    color:#fff;
+    text-align:center;
+    padding:9px 15px;
+    font-size:13px;
+}
+
+/* NAVIGATION */
+.nav-wrap{
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:30;
+    border-bottom:1px solid var(--border);
+}
+
+.nav{
+    max-width:1150px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 20px;
+}
+
+.logo{
+    height:50px;
+    width:auto;
+    display:block;
+}
+
+.links{
+    display:flex;
+    gap:25px;
+    align-items:center;
+    font-size:14px;
+    font-weight:700;
+}
+
+.nav-btn,
+.cta{
+    background:var(--blue);
+    color:#fff;
+    padding:12px 19px;
+    border-radius:8px;
+    font-weight:800;
+}
+
+/* HERO */
+.hero{
+    background:linear-gradient(135deg,#edf5ff,#fff 65%);
+    padding:75px 20px 65px;
+}
+
+.grid{
+    max-width:1150px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:50px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    background:#e3efff;
+    color:var(--blue);
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+h1{
+    font-size:clamp(40px,5vw,64px);
+    line-height:1.06;
+    color:var(--navy);
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    color:var(--muted);
+    max-width:650px;
+    margin-bottom:25px;
+}
+
+.price{
+    font-size:35px;
+    font-weight:900;
+    color:var(--blue);
+    margin-bottom:21px;
+}
+
+.price small{
+    font-size:14px;
+    color:var(--muted);
+    font-weight:500;
+}
+
+/* DASHBOARD VISUAL */
+.visual{
+    background:#0b1f3a;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:var(--shadow);
+}
+
+.dashboard{
+    background:#fff;
+    border-radius:13px;
+    padding:16px;
+    color:var(--navy);
+}
+
+.dashhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
+    font-weight:800;
+}
+
+.pill{
+    font-size:11px;
+    color:var(--blue);
+    background:#e8f1ff;
+    padding:5px 9px;
+    border-radius:20px;
+}
+
+.metrics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.metric{
+    background:#f5f8fc;
+    border:1px solid #e5ebf4;
+    padding:11px;
+    border-radius:9px;
+}
+
+.metric b{
+    display:block;
+    color:var(--blue);
+    font-size:18px;
+}
+
+.metric span{
+    font-size:10px;
+    color:#718096;
+}
+
+.chart{
+    height:150px;
+    margin-top:14px;
+    border:1px solid #e5ebf4;
+    border-radius:9px;
+    display:flex;
+    align-items:end;
+    gap:9px;
+    padding:18px;
+    background:#f9fbff;
+}
+
+.bar{
+    flex:1;
+    background:var(--blue);
+    border-radius:5px 5px 0 0;
+    opacity:.85;
+}
+
+/* GENERAL SECTIONS */
+section{
+    padding:75px 20px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.head{
+    text-align:center;
+    max-width:720px;
+    margin:0 auto 45px;
+}
+
+.head h2{
+    font-size:36px;
+    color:var(--navy);
+    margin-bottom:10px;
+}
+
+.head p{
+    color:var(--muted);
+}
+
+/* CURRICULUM */
+.tools{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.tool{
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:25px;
+    background:#fff;
+    box-shadow:0 7px 24px rgba(10,40,80,.05);
+}
+
+.icon{
+    width:55px;
+    height:55px;
+    border-radius:13px;
+    background:#e9f2ff;
+    color:var(--blue);
+    display:grid;
+    place-items:center;
+    font-weight:900;
+    margin-bottom:16px;
+}
+
+.tool h3{
+    color:var(--navy);
+    margin-bottom:8px;
+}
+
+.tool p,
+.skill span{
+    font-size:14px;
+    color:var(--muted);
+}
+
+/* BENEFITS */
+.alt{
+    background:var(--light);
+}
+
+.skills{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.skill{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:22px;
+}
+
+.skill strong{
+    display:block;
+    color:var(--navy);
+    margin-bottom:7px;
+}
+
+/* OFFER */
+.offer{
+    background:var(--navy);
+    color:#fff;
+    border-radius:22px;
+    padding:45px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    align-items:center;
+}
+
+.offer h2{
+    font-size:35px;
+    line-height:1.15;
+    margin-bottom:12px;
+}
+
+.offer p{
+    color:#cbd7e8;
+}
+
+.offer-list{
+    display:grid;
+    gap:12px;
+}
+
+.offer-list div{
+    background:rgba(255,255,255,.08);
+    padding:12px 15px;
+    border-radius:8px;
+}
+
+/* FORM */
+.form{
+    max-width:760px;
+    margin:auto;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:30px;
+    box-shadow:var(--shadow);
+}
+
+form{
+    display:grid;
+    gap:15px;
+}
+
+label{
+    font-size:13px;
+    font-weight:700;
+    color:var(--navy);
+}
+
+input,
+select{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #cfdbea;
+    border-radius:8px;
+    font:inherit;
+}
+
+button{
+    border:0;
+    background:var(--blue);
+    color:#fff;
+    padding:14px;
+    border-radius:8px;
+    font:inherit;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.note{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* FAQ */
+.faq{
+    max-width:850px;
+    margin:auto;
+    display:grid;
+    gap:12px;
+}
+
+details{
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:17px 20px;
+    background:#fff;
+}
+
+summary{
+    cursor:pointer;
+    font-weight:800;
+    color:var(--navy);
+}
+
+details p{
+    color:var(--muted);
+    font-size:14px;
+    margin-top:9px;
+}
+
+/* FOOTER */
+footer{
+    background:#06162c;
+    color:#fff;
+    text-align:center;
+    padding:38px 20px;
+}
+
+footer p{
+    color:#aebdd1;
+    font-size:13px;
+    margin-top:6px;
+}
+
+/* TABLET */
 @media(max-width:850px){
-  .nav-links{display:none}
-  .hero-grid,.offer{grid-template-columns:1fr}
-  .tools{grid-template-columns:repeat(2,1fr)}
-  .skills{grid-template-columns:1fr}
+
+    .links{
+        display:none;
+    }
+
+    .grid,
+    .offer{
+        grid-template-columns:1fr;
+    }
+
+    .tools{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .skills{
+        grid-template-columns:1fr;
+    }
 }
+
+/* MOBILE */
 @media(max-width:560px){
-  .hero{padding-top:48px}
-  section{padding:55px 16px}
-  h1{font-size:42px}
-  .tools{grid-template-columns:1fr}
-  .offer{padding:28px 22px}
-  .section-head h2{font-size:29px}
-  .metrics{grid-template-columns:1fr 1fr}
-  .metric:last-child{grid-column:span 2}
+
+    .nav{
+        padding:9px 16px;
+    }
+
+    .logo{
+        height:44px;
+    }
+
+    .hero{
+        padding-top:48px;
+    }
+
+    section{
+        padding:55px 16px;
+    }
+
+    h1{
+        font-size:42px;
+    }
+
+    .tools{
+        grid-template-columns:1fr;
+    }
+
+    .offer{
+        padding:28px 22px;
+    }
+
+    .head h2{
+        font-size:29px;
+    }
+
+    .metrics{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .metric:last-child{
+        grid-column:span 2;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<div class="topbar">ELEVIQ — Learn practical digital skills and turn knowledge into opportunity.</div>
+<!-- TOP BAR -->
+<div class="topbar">
+    ELEVIQ — Learn practical digital skills and turn knowledge into opportunity.
+</div>
 
-<header>
-  <nav class="nav">
-    <a href="#" class="logo"><span class="logo-mark">E</span>ELEVIQ</a>
-    <div class="nav-links">
-      <a href="#curriculum">Curriculum</a>
-      <a href="#benefits">Benefits</a>
-      <a href="#faq">FAQ</a>
-      <a href="#register" class="nav-btn">Register</a>
-    </div>
-  </nav>
-</header>
+<!-- NAVIGATION -->
+<div class="nav-wrap">
+    <nav class="nav">
+
+        <a href="https://brainboi2683.github.io/ELEVIQ/">
+            <img
+                class="logo"
+                src="https://brainboi2683.github.io/ELEVIQ/eleviq-logo.png"
+                alt="ELEVIQ logo"
+            >
+        </a>
+
+        <div class="links">
+            <a href="#curriculum">Curriculum</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#faq">FAQ</a>
+            <a class="nav-btn" href="#register">Register</a>
+        </div>
+
+    </nav>
+</div>
 
 <main>
+
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-grid">
-    <div>
-      <span class="badge">PRODUCT 4 • DATA ANALYSIS</span>
-      <h1>Turn Raw Data Into Useful Insights.</h1>
-      <p>Learn the practical tools used to clean, analyse, visualise and present data — from spreadsheets to professional dashboards.</p>
-      <div class="price">₦4,890 <small>for the complete package</small></div>
-      <a href="#register" class="cta">Start Learning</a>
+
+    <div class="grid">
+
+        <div>
+
+            <span class="badge">
+                PRODUCT 4 • DATA ANALYSIS
+            </span>
+
+            <h1>
+                Turn Raw Data Into Useful Insights.
+            </h1>
+
+            <p>
+                Learn the practical tools used to clean, analyse,
+                visualise and present data — from spreadsheets to
+                professional dashboards.
+            </p>
+
+            <div class="price">
+                ₦4,890
+                <small>for the complete package</small>
+            </div>
+
+            <a class="cta" href="#register">
+                Start Learning
+            </a>
+
+        </div>
+
+        <!-- DASHBOARD -->
+        <div class="visual">
+
+            <div class="dashboard">
+
+                <div class="dashhead">
+                    <span>Data Analysis Dashboard</span>
+                    <span class="pill">ELEVIQ</span>
+                </div>
+
+                <div class="metrics">
+
+                    <div class="metric">
+                        <b>Excel</b>
+                        <span>Data preparation</span>
+                    </div>
+
+                    <div class="metric">
+                        <b>SQL</b>
+                        <span>Data querying</span>
+                    </div>
+
+                    <div class="metric">
+                        <b>BI</b>
+                        <span>Dashboards</span>
+                    </div>
+
+                </div>
+
+                <div class="chart">
+
+                    <i class="bar" style="height:35%"></i>
+                    <i class="bar" style="height:58%"></i>
+                    <i class="bar" style="height:45%"></i>
+                    <i class="bar" style="height:78%"></i>
+                    <i class="bar" style="height:65%"></i>
+                    <i class="bar" style="height:90%"></i>
+                    <i class="bar" style="height:72%"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="hero-card">
-      <div class="dashboard">
-        <div class="dash-head">
-          <span class="dash-title">Data Analysis Dashboard</span>
-          <span class="dash-pill">ELEVIQ</span>
-        </div>
-        <div class="metrics">
-          <div class="metric"><strong>Excel</strong><span>Data preparation</span></div>
-          <div class="metric"><strong>SQL</strong><span>Data querying</span></div>
-          <div class="metric"><strong>BI</strong><span>Dashboards</span></div>
-        </div>
-        <div class="chart">
-          <div class="chart-bars">
-            <i class="bar" style="height:35%"></i>
-            <i class="bar" style="height:58%"></i>
-            <i class="bar" style="height:45%"></i>
-            <i class="bar" style="height:78%"></i>
-            <i class="bar" style="height:65%"></i>
-            <i class="bar" style="height:90%"></i>
-            <i class="bar" style="height:72%"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
+<!-- CURRICULUM -->
 <section id="curriculum">
-  <div class="container">
-    <div class="section-head">
-      <h2>Master the Tools That Matter</h2>
-      <p>Build a practical foundation in four key data-analysis tools.</p>
-    </div>
 
-    <div class="tools">
-      <article class="tool">
-        <div class="tool-icon">XLS</div>
-        <h3>Excel for Data Analysis</h3>
-        <p>Learn formulas, data cleaning, sorting, filtering, analysis and useful spreadsheet techniques.</p>
-      </article>
-      <article class="tool">
-        <div class="tool-icon">SQL</div>
-        <h3>SQL</h3>
-        <p>Learn how to retrieve, filter, organise and work with information stored in databases.</p>
-      </article>
-      <article class="tool">
-        <div class="tool-icon">BI</div>
-        <h3>Power BI</h3>
-        <p>Create interactive dashboards and turn datasets into clear visual reports.</p>
-      </article>
-      <article class="tool">
-        <div class="tool-icon">T</div>
-        <h3>Tableau</h3>
-        <p>Explore data visualisation and present findings through interactive charts and dashboards.</p>
-      </article>
-    </div>
-  </div>
-</section>
+    <div class="container">
 
-<section class="alt" id="benefits">
-  <div class="container">
-    <div class="section-head">
-      <h2>What You'll Be Able to Do</h2>
-      <p>The goal is practical ability, not just watching tutorials.</p>
-    </div>
-    <div class="skills">
-      <div class="skill"><strong>Clean and prepare datasets</strong><span>Organise messy information so it can be analysed effectively.</span></div>
-      <div class="skill"><strong>Analyse data in Excel</strong><span>Use spreadsheet techniques to find patterns and useful information.</span></div>
-      <div class="skill"><strong>Query databases with SQL</strong><span>Write practical queries to retrieve the information you need.</span></div>
-      <div class="skill"><strong>Build dashboards</strong><span>Present important findings using visual reports and dashboards.</span></div>
-      <div class="skill"><strong>Communicate insights</strong><span>Move beyond numbers and explain what your analysis means.</span></div>
-      <div class="skill"><strong>Work on practical projects</strong><span>Apply what you learn to realistic data-analysis tasks.</span></div>
-    </div>
-  </div>
-</section>
+        <div class="head">
 
-<section>
-  <div class="container">
-    <div class="offer">
-      <div>
-        <h2>Everything You Need to Start Your Data Journey.</h2>
-        <p>One package covering the core tools, supported by practical learning and guidance.</p>
-      </div>
-      <div class="offer-list">
-        <div>✓ Free certificate upon completion</div>
-        <div>✓ 1-on-1 coaching</div>
-        <div>✓ Access to pre-recorded self-paced videos</div>
-        <div>✓ Practical learning and projects</div>
-      </div>
-    </div>
-  </div>
-</section>
+            <h2>
+                Master the Tools That Matter
+            </h2>
 
-<section id="register">
-  <div class="container">
-    <div class="section-head">
-      <h2>Register for Product 4</h2>
-      <p>Fill in your details and ELEVIQ will get back to you with the next steps.</p>
-    </div>
+            <p>
+                Build a practical foundation in four key data-analysis tools.
+            </p>
 
-    <div class="form-wrap">
-      <form id="registrationForm">
-        <div>
-          <label for="name">Full Name</label>
-          <input id="name" name="name" type="text" required placeholder="Enter your full name">
         </div>
-        <div>
-          <label for="phone">Phone / WhatsApp Number</label>
-          <input
+
+        <div class="tools">
+
+            <article class="tool">
+
+                <div class="icon">
+                    XLS
+                </div>
+
+                <h3>
+                    Excel for Data Analysis
+                </h3>
+
+                <p>
+                    Learn formulas, data cleaning, sorting, filtering,
+                    analysis and useful spreadsheet techniques.
+                </p>
+
+            </article>
+
+            <article class="tool">
+
+                <div class="icon">
+                    SQL
+                </div>
+
+                <h3>
+                    SQL
+                </h3>
+
+                <p>
+                    Learn how to retrieve, filter, organise and work
+                    with information stored in databases.
+                </p>
+
+            </article>
+
+            <article class="tool">
+
+                <div class="icon">
+                    BI
+                </div>
+
+                <h3>
+                    Power BI
+                </h3>
+
+                <p>
+                    Create interactive dashboards and turn datasets
+                    into clear visual reports.
+                </p>
+
+            </article>
+
+            <article class="tool">
+
+                <div class="icon">
+                    T
+                </div>
+
+                <h3>
+                    Tableau
+                </h3>
+
+                <p>
+                    Explore data visualisation and present findings
+                    through interactive charts and dashboards.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BENEFITS -->
+<section class="alt" id="benefits">
+
+    <div class="container">
+
+        <div class="head">
+
+            <h2>
+                What You'll Be Able to Do
+            </h2>
+
+            <p>
+                The goal is practical ability, not just watching tutorials.
+            </p>
+
+        </div>
+
+        <div class="skills">
+
+            <div class="skill">
+                <strong>
+                    Clean and prepare datasets
+                </strong>
+
+                <span>
+                    Organise messy information so it can be analysed effectively.
+                </span>
+            </div>
+
+            <div class="skill">
+                <strong>
+                    Analyse data in Excel
+                </strong>
+
+                <span>
+                    Use spreadsheet techniques to find patterns and useful information.
+                </span>
+            </div>
+
+            <div class="skill">
+                <strong>
+                    Query databases with SQL
+                </strong>
+
+                <span>
+                    Write practical queries to retrieve the information you need.
+                </span>
+            </div>
+
+            <div class="skill">
+                <strong>
+                    Build dashboards
+                </strong>
+
+                <span>
+                    Present important findings using visual reports and dashboards.
+                </span>
+            </div>
+
+            <div class="skill">
+                <strong>
+                    Communicate insights
+                </strong>
+
+                <span>
+                    Move beyond numbers and explain what your analysis means.
+                </span>
+            </div>
+
+            <div class="skill">
+                <strong>
+                    Work on practical projects
+                </strong>
+
+                <span>
+                    Apply what you learn to realistic data-analysis tasks.
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- OFFER -->
+<section>
+
+    <div class="container">
+
+        <div class="offer">
+
+            <div>
+
+                <h2>
+                    Everything You Need to Start Your Data Journey.
+                </h2>
+
+                <p>
+                    One package covering the core tools, supported by
+                    practical learning and guidance.
+                </p>
+
+            </div>
+
+            <div class="offer-list">
+
+                <div>
+                    ✓ Free certificate upon completion
+                </div>
+
+                <div>
+                    ✓ 1-on-1 coaching
+                </div>
+
+                <div>
+                    ✓ Access to pre-recorded self-paced videos
+                </div>
+
+                <div>
+                    ✓ Practical learning and projects
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- REGISTRATION -->
+<section id="register">
+
+    <div class="container">
+
+        <div class="head">
+
+            <h2>
+                Register for Product 4
+            </h2>
+
+            <p>
+                Fill in your details and ELEVIQ will get back to you
+                with the next steps.
+            </p>
+
+        </div>
+
+        <div class="form">
+
+            <form id="registrationForm">
+
+                <div>
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        id="name"
+                        required
+                        placeholder="Enter your full name"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>
+                        Phone / WhatsApp Number
+                    </label>
+
+                    <input
+                        id="phone"
+                        type="tel"
+                        required
+                        placeholder="080..."
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="you@example.com"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>
+                        Current Level
+                    </label>
+
+                    <select id="level">
+
+                        <option>
+                            Beginner
+                        </option>
+
+                        <option>
+                            Basic knowledge
+                        </option>
+
+                        <option>
+                            Intermediate
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button type="submit">
+                    Submit Registration
+                </button>
+
+                <p class="note">
+                    After submission, you'll receive instructions
+                    for completing registration and payment.
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FAQ -->
+<section class="alt" id="faq">
+
+    <div class="container">
+
+        <div class="head">
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+        </div>
+
+        <div class="faq">
+
+            <details>
+
+                <summary>
+                    How much is Product 4?
+                </summary>
+
+                <p>
+                    The complete Data Analysis package is ₦4,890.
+                </p>
+
+            </details>
+
+            <details>
+
+                <summary>
+                    Which tools are included?
+                </summary>
+
+                <p>
+                    Excel for Data Analysis, SQL, Power BI and Tableau.
+                </p>
+
+            </details>
+
+            <details>
+
+                <summary>
+                    Do I need previous experience?
+                </summary>
+
+                <p>
+                    No. The package can be approached from a beginner
+                    level and developed through practical exercises.
+                </p>
+
+            </details>
+
+            <details>
+
+                <summary>
+                    Do I receive a certificate?
+                </summary>
+
+                <p>
+                    Yes. A free certificate is included upon completion.
+                </p>
+
+            </details>
+
+            <details>
+
+                <summary>
+                    Is coaching included?
+                </summary>
+
+                <p>
+                    Yes. The package includes 1-on-1 coaching and
+                    access to pre-recorded self-paced videos.
+                </p>
+
+            </details>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+
+    <strong>
+        ELEVIQ
+    </strong>
+
+    <p>
+        Education • Opportunities • Digital Skills
+    </p>
+
+    <p>
+        © 2026 ELEVIQ. All rights reserved.
+    </p>
+
+</footer>
+
+<!-- REGISTRATION JAVASCRIPT -->
+<script>
+
+document
+.getElementById('registrationForm')
+.addEventListener('submit', function(e){
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById('name').value.trim();
+
+    const phone =
+        document.getElementById('phone').value.trim();
+
+    const email =
+        document.getElementById('email').value.trim();
+
+    const level =
+        document.getElementById('level').value;
+
+    const msg =
+        'Hello ELEVIQ,%0A%0A' +
+        'I want to register for Product 4 — Data Analysis.%0A%0A' +
+        'Name: ' + encodeURIComponent(name) + '%0A' +
+        'Phone: ' + encodeURIComponent(phone) + '%0A' +
+        'Email: ' + encodeURIComponent(email) + '%0A' +
+        'Level: ' + encodeURIComponent(level) + '%0A' +
+        'Price: ₦4,890';
+
+    window.open(
+        'https://wa.me/?text=' + msg,
+        '_blank'
+    );
+
+});
+
+</script>
+
+</body>
+  </html>
