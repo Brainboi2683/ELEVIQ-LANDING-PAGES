@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ELEVIQ Product 5 | Master Digital, Creative & Tech Skills</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f8ff;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 125px;
+      height: auto;
+    }
+
+    .header-btn {
+      background: #1769e0;
+      color: white;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0b3f98, #1769e0);
+      color: white;
+      padding: 70px 7%;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      max-width: 850px;
+      margin: auto;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 20px auto;
+      font-size: 18px;
+      opacity: 0.95;
+    }
+
+    .price-box {
+      margin: 30px auto;
+      max-width: 420px;
+      background: white;
+      color: #172033;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #777;
+      font-size: 18px;
+    }
+
+    .price {
+      color: #1769e0;
+      font-size: 38px;
+      font-weight: 800;
+      margin: 5px 0;
+    }
+
+    .saving {
+      color: #16803c;
+      font-weight: bold;
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 18px;
+      background: #ffb703;
+      color: #111;
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    section {
+      padding: 60px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #0b3f98;
+      font-size: 30px;
+      margin-bottom: 35px;
+    }
+
+    .intro {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.07);
+      border-top: 4px solid #1769e0;
+    }
+
+    .skill-card h3 {
+      color: #0b3f98;
+      font-size: 21px;
+      margin-bottom: 12px;
+    }
+
+    .skill-card p {
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .skill-card ul {
+      padding-left: 20px;
+      color: #333;
+    }
+
+    .skill-card li {
+      margin-bottom: 7px;
+    }
+
+    .benefits {
+      background: #ffffff;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .benefit {
+      text-align: center;
+      padding: 25px 18px;
+      background: #f5f8ff;
+      border-radius: 15px;
+    }
+
+    .benefit-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .benefit h3 {
+      color: #0b3f98;
+      margin-bottom: 8px;
+    }
+
+    .form-section {
+      background: #eef4ff;
+    }
+
+    .form-box {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .form-box h2 {
+      text-align: center;
+      color: #0b3f98;
+      margin-bottom: 10px;
+    }
+
+    .form-box > p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 6px;
+      font-weight: bold;
+      color: #26364d;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccd6e5;
+      border-radius: 9px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #1769e0;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      background: #1769e0;
+      color: white;
+      padding: 15px;
+      margin-top: 22px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #0b3f98;
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    .final-cta {
+      background: #0b3f98;
+      color: white;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .final-cta p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 17px;
+    }
+
+    footer {
+      background: #071f4d;
+      color: white;
+      text-align: center;
+      padding: 25px 7%;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+
+      header {
+        padding: 15px 5%;
+      }
+
+      .logo {
+        width: 105px;
+      }
+
+      .header-btn {
+        padding: 9px 14px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 55px 5%;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 45px 5%;
+      }
+
+      .section-title {
+        font-size: 26px;
+      }
+
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-box {
+        padding: 25px 20px;
+      }
+
+      .final-cta h2 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img src="eleviq-logo.png" alt="ELEVIQ Logo" class="logo">
+
+    <a href="#register" class="header-btn">
+      Register Now
+    </a>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <h1>
+      Master Digital, Creative & Tech Skills
+    </h1>
+
+    <p>
+      One powerful bundle designed to help you build practical digital,
+      creative, data and technology skills for school, work, business and
+      the digital economy.
+    </p>
+
+    <div class="price-box">
+
+      <div class="old-price">
+        Regular Value: ₦38,000
+      </div>
+
+      <div class="price">
+        ₦32,710
+      </div>
+
+      <div class="saving">
+        Save ₦5,290
+      </div>
+
+      <a href="#register" class="cta">
+        Get Started Now
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- INTRODUCTION -->
+  <section>
+
+    <h2 class="section-title">
+      One Bundle. Multiple Skills.
+    </h2>
+
+    <p class="intro">
+      Instead of learning one skill at a time, Product 5 gives you access
+      to a complete collection of essential digital, creative, analytical
+      and technology skills in one package.
+    </p>
+
+  </section>
+
+
+  <!-- SKILLS -->
+  <section>
+
+    <h2 class="section-title">
+      What You'll Learn
+    </h2>
+
+    <div class="skills">
+
+      <!-- COMPUTER -->
+      <div class="skill-card">
+
+        <h3>1. Computer & Office Skills</h3>
+
+        <p>
+          Build strong computer and productivity skills for school,
+          business and the workplace.
+        </p>
+
+        <ul>
+          <li>Windows 10</li>
+          <li>Microsoft Word</li>
+          <li>Microsoft Excel</li>
+          <li>Microsoft PowerPoint</li>
+        </ul>
+
+      </div>
+
+
+      <!-- GRAPHIC DESIGN -->
+      <div class="skill-card">
+
+        <h3>2. Graphic Design</h3>
+
+        <p>
+          Learn the tools used to create professional graphics,
+          branding materials and digital designs.
+        </p>
+
+        <ul>
+          <li>CorelDRAW</li>
+          <li>Adobe Photoshop</li>
+          <li>Canva</li>
+          <li>PixelLab</li>
+        </ul>
+
+      </div>
+
+
+      <!-- DATA ANALYSIS -->
+      <div class="skill-card">
+
+        <h3>3. Data Analysis</h3>
+
+        <p>
+          Learn how to work with data and turn information into useful
+          insights for decision-making.
+        </p>
+
+        <ul>
+          <li>Excel for Data Analysis</li>
+          <li>SQL</li>
+          <li>Power BI</li>
+          <li>Tableau</li>
+        </ul>
+
+      </div>
+
+
+      <!-- WEB/PYTHON -->
+      <div class="skill-card">
+
+        <h3>4. Web Development & Python</h3>
+
+        <p>
+          Develop foundational programming and web development skills
+          for the modern digital world.
+        </p>
+
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>Python</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BENEFITS -->
+  <section class="benefits">
+
+    <h2 class="section-title">
+      What You Get
+    </h2>
+
+    <div class="benefit-grid">
+
+      <div class="benefit">
+
+        <div class="benefit-icon">🎓</div>
+
+        <h3>Certificate</h3>
+
+        <p>
+          Receive a certificate upon successful completion.
+        </p>
+
+      </div>
+
+
+      <div class="benefit">
+
+        <div class="benefit-icon">🎥</div>
+
+        <h3>Self-Paced Lessons</h3>
+
+        <p>
+          Learn with pre-recorded lessons and study at your own pace.
+        </p>
+
+      </div>
+
+
+      <div class="benefit">
+
+        <div class="benefit-icon">💻</div>
+
+        <h3>Live Sessions</h3>
+
+        <p>
+          Complement your recorded lessons with live learning sessions.
+        </p>
+
+      </div>
+
+
+      <div class="benefit">
+
+        <div class="benefit-icon">👨‍🏫</div>
+
+        <h3>1-on-1 Coaching</h3>
+
+        <p>
+          Get personal guidance and support as you learn.
+        </p>
+
+      </div>
+
+
+      <div class="benefit">
+
+        <div class="benefit-icon">📚</div>
+
+        <h3>Multiple Skills</h3>
+
+        <p>
+          Learn computer, creative, analytical and technology skills
+          together.
+        </p>
+
+      </div>
+
+
+      <div class="benefit">
+
+        <div class="benefit-icon">🚀</div>
+
+        <h3>Practical Knowledge</h3>
+
+        <p>
+          Build skills you can apply to school, work, business and
+          personal projects.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REGISTRATION FORM -->
+  <section class="form-section" id="register">
+
+    <div class="form-box">
+
+      <h2>Register Your Interest</h2>
+
+      <p>
+        Fill in your details and the ELEVIQ team will contact you
+        with the next steps.
+      </p>
+
+      <form
+        action="https://formsubmit.co/eleviq1@gmail.com"
+        method="POST"
+      >
+
+        <input
+          type="hidden"
+          name="_subject"
+          value="ELEVIQ Product 5 Registration"
+        >
+
+        <input
+          type="hidden"
+          name="_captcha"
+          value="false"
+        >
+
+        <input
+          type="hidden"
+          name="_template"
+          value="table"
+        >
+
+        <label for="name">
+          Full Name
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          name="Full Name"
+          placeholder="Enter your full name"
+          required
+        >
+
+
+        <label for="email">
+          Email Address
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          name="Email"
+          placeholder="Enter your email address"
+          required
+        >
+
+
+        <label for="phone">
+          WhatsApp / Phone Number
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          name="Phone Number"
+          placeholder="e.g. 08012345678"
+          required
+        >
+
+
+        <label for="location">
+          Location
+        </label>
+
+        <input
+          type="text"
+          id="location"
+          name="Location"
+          placeholder="City / State"
+          required
+        >
+
+
+        <label for="background">
+          Current Status
+        </label>
+
+        <select
+          id="background"
+          name="Current Status"
+          required
+        >
+
+          <option value="">
+            Select one
+          </option>
+
+          <option value="Student">
+            Student
+          </option>
+
+          <option value="Undergraduate">
+            Undergraduate
+          </option>
+
+          <option value="Graduate">
+            Graduate
+          </option>
+
+          <option value="Worker">
+            Worker
+          </option>
+
+          <option value="Business Owner">
+            Business Owner
+          </option>
+
+          <option value="Other">
+            Other
+          </option>
+
+        </select>
+
+
+        <label for="preferred">
+          Preferred Learning Area
+        </label>
+
+        <select
+          id="preferred"
+          name="Preferred Learning Area"
+          required
+        >
+
+          <option value="">
+            Select an option
+          </option>
+
+          <option value="Computer and Office Skills">
+            Computer & Office Skills
+          </option>
+
+          <option value="Graphic Design">
+            Graphic Design
+          </option>
+
+          <option value="Data Analysis">
+            Data Analysis
+          </option>
+
+          <option value="Web Development and Python">
+            Web Development & Python
+          </option>
+
+          <option value="Everything in Product 5">
+            Everything in Product 5
+          </option>
+
+        </select>
+
+
+        <label for="message">
+          Anything You'd Like Us To Know?
+        </label>
+
+        <textarea
+          id="message"
+          name="Message"
+          placeholder="Tell us about your goals or any questions you have..."
+        ></textarea>
+
+
+        <button
+          type="submit"
+          class="submit-btn"
+        >
+          Submit Registration
+        </button>
+
+        <p class="form-note">
+          Your information will be used to contact you about Product 5.
+        </p>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+
+    <h2>
+      Ready to Upgrade Your Skills?
+    </h2>
+
+    <p>
+      Take advantage of Product 5 and start building multiple
+      practical digital, creative, analytical and technology skills.
+    </p>
+
+    <a href="#register" class="cta">
+      Register Your Interest
+    </a>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 ELEVIQ. All Rights Reserved.
+    </p>
+
+    <p>
+      Learn. Grow. Create. Innovate.
+    </p>
+
+  </footer>
+
+
+</body>
+</html>
