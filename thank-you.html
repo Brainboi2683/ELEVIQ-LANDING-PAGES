@@ -2,679 +2,679 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1769e0">
-
-  <title>Registration Received | ELEVIQ</title>
-
-  <meta name="description" content="Thank you for choosing ELEVIQ. Your registration interest has been received.">
-
-  <style>
-    :root {
-      --blue: #1769e0;
-      --dark: #0b3f98;
-      --text: #18345b;
-      --muted: #63748c;
-      --light: #f3f7ff;
-      --green: #20b968;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f3f7ff;
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .topbar {
-      background: #fff;
-      padding: 20px;
-      border-bottom: 1px solid #e8eef8;
-    }
-
-    .topbar-inner {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: var(--blue);
-    }
-
-    .tagline {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 45px 18px;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 800px;
-      background: #fff;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(11, 63, 152, 0.10);
-    }
-
-    .hero {
-      text-align: center;
-      padding: 50px 25px 38px;
-      background: linear-gradient(135deg, #eaf2ff, #f8fbff);
-    }
-
-    .success-icon {
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 22px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: #e0f7eb;
-      color: #15945b;
-      font-size: 45px;
-      font-weight: bold;
-      border: 5px solid #c8efda;
-    }
-
-    .eyebrow {
-      color: var(--blue);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: clamp(30px, 6vw, 43px);
-      line-height: 1.15;
-      color: var(--dark);
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      max-width: 540px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .content {
-      padding: 35px clamp(20px, 5vw, 45px) 42px;
-    }
-
-    .section-title {
-      font-size: 21px;
-      color: var(--dark);
-      margin-bottom: 22px;
-    }
-
-    .steps {
-      display: grid;
-      gap: 19px;
-    }
-
-    .step {
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
-    }
-
-    .number {
-      min-width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #eaf2ff;
-      color: var(--blue);
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-    }
-
-    .step h3 {
-      font-size: 15px;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .step p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .notice {
-      margin-top: 30px;
-      padding: 18px;
-      border-radius: 13px;
-      background: #fff8e9;
-      border: 1px solid #f5e3b8;
-      color: #76541b;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .notice strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-
-    /* COURSES */
-
-    .courses-section {
-      margin-top: 42px;
-      padding-top: 32px;
-      border-top: 1px solid #e8eef8;
-    }
-
-    .section-description {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-      margin-top: -12px;
-      margin-bottom: 22px;
-    }
-
-    .courses-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .course-card {
-      border: 1px solid #e1eaf8;
-      border-radius: 14px;
-      padding: 19px;
-      background: #fff;
-      transition: .2s;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .course-card:hover {
-      border-color: var(--blue);
-      box-shadow: 0 8px 22px rgba(23, 105, 224, .08);
-      transform: translateY(-2px);
-    }
-
-    .course-number {
-      display: inline-block;
-      background: #eaf2ff;
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 800;
-      padding: 6px 10px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-    }
-
-    .course-card h3 {
-      color: var(--dark);
-      font-size: 15px;
-      line-height: 1.5;
-      margin-bottom: 9px;
-    }
-
-    .course-card p {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 13px;
-      flex: 1;
-    }
-
-    .price {
-      font-size: 17px;
-      font-weight: 900;
-      color: var(--blue);
-      margin-bottom: 14px;
-    }
-
-    .course-link {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 11px 12px;
-      border-radius: 8px;
-      background: #edf4ff;
-      color: var(--blue);
-      font-size: 13px;
-      font-weight: 800;
-      transition: .2s;
-    }
-
-    .course-link:hover {
-      background: var(--blue);
-      color: #fff;
-    }
-
-    .bundle-card {
-      grid-column: 1 / -1;
-      background: linear-gradient(135deg, #0b3f98, #1769e0);
-      border: none;
-    }
-
-    .bundle-card .course-number {
-      background: rgba(255,255,255,.17);
-      color: #fff;
-    }
-
-    .bundle-card h3,
-    .bundle-card p,
-    .bundle-card .price {
-      color: #fff;
-    }
-
-    .bundle-card p {
-      opacity: .88;
-    }
-
-    .bundle-card .course-link {
-      background: #fff;
-      color: var(--dark);
-    }
-
-    .bundle-card .course-link:hover {
-      background: #eaf2ff;
-    }
-
-    /* WHATSAPP CONTACT */
-
-    .contact {
-      margin-top: 42px;
-      padding-top: 32px;
-      border-top: 1px solid #e8eef8;
-    }
-
-    .contact-heading {
-      text-align: center;
-      margin-bottom: 23px;
-    }
-
-    .contact-heading h2 {
-      font-size: 21px;
-      color: var(--dark);
-      margin-bottom: 9px;
-    }
-
-    .contact-heading p {
-      font-size: 13px;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    .whatsapp-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 15px;
-    }
-
-    .whatsapp-card {
-      border: 1px solid #d9f1e3;
-      background: linear-gradient(145deg, #f1fff6, #ffffff);
-      border-radius: 15px;
-      padding: 20px 15px;
-      text-align: center;
-      transition: .2s;
-    }
-
-    .whatsapp-card:hover {
-      border-color: var(--green);
-      box-shadow: 0 8px 22px rgba(32, 185, 104, .10);
-      transform: translateY(-2px);
-    }
-
-    .wa-icon {
-      width: 49px;
-      height: 49px;
-      margin: 0 auto 12px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: #d9f8e5;
-      color: #128c4d;
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    .whatsapp-card h3 {
-      color: #174c31;
-      font-size: 14px;
-      margin-bottom: 7px;
-    }
-
-    .phone {
-      color: #526b5c;
-      font-size: 13px;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-
-    .wa-button {
-      display: block;
-      width: 100%;
-      background: #20b968;
-      color: #fff;
-      padding: 12px 10px;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 800;
-      transition: .2s;
-    }
-
-    .wa-button:hover {
-      background: #128c4d;
-    }
-
-    .other-contact {
-      margin-top: 17px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .other-contact a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 14px 10px;
-      border: 1px solid #e1eaf8;
-      background: #f7faff;
-      border-radius: 10px;
-      color: var(--dark);
-      font-size: 13px;
-      font-weight: 700;
-      text-align: center;
-      overflow-wrap: anywhere;
-    }
-
-    .other-contact a:hover {
-      border-color: var(--blue);
-      background: #edf4ff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 24px 15px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    footer strong {
-      color: var(--blue);
-    }
-
-    @media(max-width: 560px) {
-      .topbar-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .main {
-        padding: 24px 12px;
-      }
-
-      .hero {
-        padding: 40px 19px 30px;
-      }
-
-      .content {
-        padding: 27px 17px 32px;
-      }
-
-      .courses-grid,
-      .whatsapp-grid,
-      .other-contact {
-        grid-template-columns: 1fr;
-      }
-
-      .bundle-card {
-        grid-column: auto;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1769e0">
+<title>Registration Received | ELEVIQ</title>
+
+<style>
+:root {
+  --blue:#1769e0;
+  --dark:#0b3f98;
+  --text:#18345b;
+  --muted:#63748c;
+  --green:#20b968;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f7ff;
+  color:var(--text);
+  min-height:100vh;
+}
+
+a{text-decoration:none}
+
+.topbar{
+  background:#fff;
+  padding:17px 20px;
+  border-bottom:1px solid #e8eef8;
+}
+
+.topbar-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo{
+  display:block;
+  width:150px;
+  max-height:65px;
+  object-fit:contain;
+}
+
+.tagline{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.main{
+  display:flex;
+  justify-content:center;
+  padding:45px 18px;
+}
+
+.container{
+  width:100%;
+  max-width:850px;
+  background:#fff;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(11,63,152,.10);
+}
+
+.hero{
+  text-align:center;
+  padding:50px 25px 38px;
+  background:linear-gradient(135deg,#eaf2ff,#f8fbff);
+}
+
+.success-icon{
+  width:82px;
+  height:82px;
+  margin:0 auto 22px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#e0f7eb;
+  color:#15945b;
+  font-size:45px;
+  font-weight:bold;
+  border:5px solid #c8efda;
+}
+
+.eyebrow{
+  color:var(--blue);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+h1{
+  font-size:clamp(29px,6vw,43px);
+  line-height:1.2;
+  color:var(--dark);
+  margin-bottom:15px;
+}
+
+.hero p{
+  max-width:550px;
+  margin:auto;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.8;
+}
+
+.content{
+  padding:35px clamp(20px,5vw,45px) 42px;
+}
+
+.section-title{
+  font-size:21px;
+  color:var(--dark);
+  margin-bottom:22px;
+}
+
+.steps{display:grid;gap:19px}
+
+.step{
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+}
+
+.number{
+  min-width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#eaf2ff;
+  color:var(--blue);
+  display:grid;
+  place-items:center;
+  font-weight:800;
+}
+
+.step h3{
+  font-size:15px;
+  margin-bottom:6px;
+}
+
+.step p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.notice{
+  margin-top:30px;
+  padding:18px;
+  border-radius:13px;
+  background:#fff8e9;
+  border:1px solid #f5e3b8;
+  color:#76541b;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.notice strong{
+  display:block;
+  margin-bottom:5px;
+  font-size:14px;
+}
+
+/* COURSE SECTION */
+
+.courses-section{
+  margin-top:42px;
+  padding-top:32px;
+  border-top:1px solid #e8eef8;
+}
+
+.section-description{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+  margin-top:-12px;
+  margin-bottom:22px;
+}
+
+.courses-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+
+.course-card{
+  min-height:255px;
+  padding:22px;
+  border-radius:15px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  color:#fff;
+  background-size:cover;
+  background-position:center;
+  isolation:isolate;
+  transition:.25s;
+}
+
+.course-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(
+    0deg,
+    rgba(5,24,58,.94) 0%,
+    rgba(5,24,58,.68) 48%,
+    rgba(5,24,58,.18) 100%
+  );
+}
+
+.course-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(11,63,152,.18);
+}
+
+.course-one{
+  background-image:url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85");
+}
+
+.course-two{
+  background-image:url("https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85");
+}
+
+.course-three{
+  background-image:url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85");
+}
+
+.course-four{
+  background-image:url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=85");
+}
+
+.course-five{
+  background-image:url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85");
+  grid-column:1/-1;
+  min-height:270px;
+}
+
+.course-number{
+  display:inline-block;
+  width:max-content;
+  background:rgba(255,255,255,.19);
+  border:1px solid rgba(255,255,255,.3);
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  padding:7px 11px;
+  border-radius:20px;
+  margin-bottom:12px;
+}
+
+.course-card h3{
+  font-size:19px;
+  line-height:1.4;
+  margin-bottom:9px;
+  color:#fff;
+}
+
+.course-card p{
+  font-size:13px;
+  line-height:1.65;
+  color:#edf3ff;
+  margin-bottom:13px;
+}
+
+.price{
+  font-size:20px;
+  font-weight:900;
+  color:#fff;
+  margin-bottom:15px;
+}
+
+.course-link{
+  display:block;
+  width:100%;
+  text-align:center;
+  padding:12px;
+  border-radius:8px;
+  background:#fff;
+  color:var(--dark);
+  font-size:13px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.course-link:hover{
+  background:#dceaff;
+}
+
+/* WHATSAPP SECTION */
+
+.contact{
+  margin-top:42px;
+  padding-top:32px;
+  border-top:1px solid #e8eef8;
+}
+
+.contact-heading{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.contact-heading h2{
+  font-size:22px;
+  color:var(--dark);
+  margin-bottom:9px;
+}
+
+.contact-heading p{
+  font-size:13px;
+  line-height:1.7;
+  color:var(--muted);
+}
+
+.whatsapp-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+
+.whatsapp-card{
+  border:1px solid #d9f1e3;
+  background:linear-gradient(145deg,#effff5,#fff);
+  border-radius:16px;
+  padding:23px 17px;
+  text-align:center;
+  transition:.2s;
+}
+
+.whatsapp-card:hover{
+  border-color:var(--green);
+  box-shadow:0 10px 25px rgba(32,185,104,.12);
+  transform:translateY(-3px);
+}
+
+.wa-icon{
+  width:55px;
+  height:55px;
+  margin:0 auto 13px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#d9f8e5;
+  color:#128c4d;
+}
+
+.wa-icon svg{
+  width:29px;
+  height:29px;
+  fill:currentColor;
+}
+
+.whatsapp-card h3{
+  color:#174c31;
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.phone{
+  color:#526b5c;
+  font-size:14px;
+  margin-bottom:17px;
+  font-weight:700;
+}
+
+.wa-button{
+  display:block;
+  width:100%;
+  background:#20b968;
+  color:#fff;
+  padding:13px 10px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.wa-button:hover{background:#128c4d}
+
+.other-contact{
+  margin-top:17px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.other-contact a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:14px 10px;
+  border:1px solid #e1eaf8;
+  background:#f7faff;
+  border-radius:10px;
+  color:var(--dark);
+  font-size:13px;
+  font-weight:700;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
+
+.other-contact a:hover{
+  border-color:var(--blue);
+  background:#edf4ff;
+}
+
+footer{
+  text-align:center;
+  padding:24px 15px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+footer strong{color:var(--blue)}
+
+@media(max-width:560px){
+  .topbar-inner{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .logo{width:135px}
+
+  .main{padding:24px 12px}
+
+  .hero{padding:40px 19px 30px}
+
+  .content{padding:27px 16px 32px}
+
+  .courses-grid,
+  .whatsapp-grid,
+  .other-contact{
+    grid-template-columns:1fr;
+  }
+
+  .course-five{
+    grid-column:auto;
+  }
+
+  .course-card{min-height:245px}
+}
+</style>
 </head>
 
 <body>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="logo">ELEVIQ</div>
-      <div class="tagline">Learn. Grow. Create. Innovate.</div>
-    </div>
-  </header>
+<header class="topbar">
+  <div class="topbar-inner">
+    <img
+      class="logo"
+      src="eleviq-logo.png"
+      alt="ELEVIQ Logo"
+    >
+    <div class="tagline">Learn. Grow. Create. Innovate.</div>
+  </div>
+</header>
 
-  <main class="main">
-    <section class="container">
+<main class="main">
+<section class="container">
 
-      <div class="hero">
-        <div class="success-icon" aria-hidden="true">✓</div>
+  <div class="hero">
+    <div class="success-icon" aria-hidden="true">✓</div>
+    <div class="eyebrow">Submission successful</div>
 
-        <div class="eyebrow">Submission successful</div>
+    <h1>Thank You for Choosing ELEVIQ!</h1>
 
-        <h1>Thank You for Choosing ELEVIQ!</h1>
+    <p>
+      Your registration interest has been received.
+      We appreciate your interest in learning and growing with us.
+      Your next step towards acquiring valuable digital skills starts here.
+    </p>
+  </div>
 
-        <p>
-          Your registration interest has been received.
-          We appreciate your interest in learning and growing with us.
-          Your next step towards acquiring valuable digital skills starts here.
-        </p>
+  <div class="content">
+
+    <h2 class="section-title">What happens next?</h2>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="number">1</div>
+        <div>
+          <h3>We receive your details</h3>
+          <p>Your submitted information will be reviewed by our team.</p>
+        </div>
       </div>
 
-      <div class="content">
-
-        <h2 class="section-title">What happens next?</h2>
-
-        <div class="steps">
-
-          <div class="step">
-            <div class="number">1</div>
-            <div>
-              <h3>We receive your details</h3>
-              <p>Your submitted information will be reviewed by our team.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="number">2</div>
-            <div>
-              <h3>We get in touch</h3>
-              <p>
-                We may contact you through your provided WhatsApp number
-                or email address to discuss your selected course.
-              </p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="number">3</div>
-            <div>
-              <h3>Complete your enrolment</h3>
-              <p>
-                You will receive further information about payment,
-                learning arrangements and how to get started.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="notice">
-          <strong>Important information</strong>
-          Submitting this form indicates your interest in an ELEVIQ
-          learning programme. It does not automatically confirm payment,
-          admission or enrolment.
-        </div>
-
-        <!-- EXPLORE COURSES -->
-
-        <section class="courses-section">
-
-          <h2 class="section-title">Explore Our Courses</h2>
-
-          <p class="section-description">
-            Interested in developing more skills? Explore our available
-            learning programmes and find the one that suits your goals.
+      <div class="step">
+        <div class="number">2</div>
+        <div>
+          <h3>We get in touch</h3>
+          <p>
+            We may contact you through your provided WhatsApp number
+            or email address to discuss your selected course.
           </p>
+        </div>
+      </div>
 
-          <div class="courses-grid">
+      <div class="step">
+        <div class="number">3</div>
+        <div>
+          <h3>Complete your enrolment</h3>
+          <p>
+            You will receive further information about payment,
+            learning arrangements and how to get started.
+          </p>
+        </div>
+      </div>
 
-            <div class="course-card">
-              <span class="course-number">PRODUCT 1</span>
-              <h3>Master Computer & Office Skills</h3>
-              <p>
-                Learn Windows 10, Microsoft Word, Excel and PowerPoint.
-              </p>
-              <div class="price">₦4,980</div>
-              <a class="course-link" href="product1.html">View Course →</a>
-            </div>
+    </div>
 
-            <div class="course-card">
-              <span class="course-number">PRODUCT 2</span>
-              <h3>Professional Graphic Design</h3>
-              <p>
-                Develop design skills with CorelDRAW, Photoshop,
-                PixelLab and Canva.
-              </p>
-              <div class="price">₦7,890</div>
-              <a class="course-link" href="product2.html">View Course →</a>
-            </div>
+    <div class="notice">
+      <strong>Important information</strong>
+      Submitting this form indicates your interest in an ELEVIQ
+      learning programme. It does not automatically confirm payment,
+      admission or enrolment.
+    </div>
 
-            <div class="course-card">
-              <span class="course-number">PRODUCT 3</span>
-              <h3>Mastering Data Analysis</h3>
-              <p>
-                Learn Excel, SQL, Power BI and Tableau for data analysis.
-              </p>
-              <div class="price">₦4,980</div>
-              <a class="course-link" href="product3.html">View Course →</a>
-            </div>
+    <!-- EXPLORE OUR COURSES -->
 
-            <div class="course-card">
-              <span class="course-number">PRODUCT 4</span>
-              <h3>Web Development & Python</h3>
-              <p>
-                Build your programming foundation with HTML, CSS,
-                JavaScript and Python.
-              </p>
-              <div class="price">₦19,950</div>
-              <a class="course-link" href="product4.html">View Course →</a>
-            </div>
+    <section class="courses-section">
 
-            <div class="course-card bundle-card">
-              <span class="course-number">PRODUCT 5 · COMPLETE BUNDLE</span>
-              <h3>Complete Skills Bundle</h3>
-              <p>
-                Get access to all four learning programmes in one bundle.
-                Regular value: ₦38,000. Save ₦5,290.
-              </p>
-              <div class="price">₦32,710</div>
-              <a class="course-link" href="product5.html">Explore Complete Bundle →</a>
-            </div>
+      <h2 class="section-title">Explore Our Courses</h2>
 
-          </div>
-        </section>
+      <p class="section-description">
+        Continue your learning journey with ELEVIQ.
+        Explore our programmes and discover the skills you can acquire.
+      </p>
 
-        <!-- WHATSAPP CONTACT -->
+      <div class="courses-grid">
 
-        <section class="contact">
+        <div class="course-card course-one">
+          <span class="course-number">PRODUCT 1</span>
+          <h3>Master Computer & Office Skills</h3>
+          <p>Windows 10, Microsoft Word, Excel and PowerPoint.</p>
+          <div class="price">₦4,980</div>
+          <a class="course-link" href="product1.html">View Course →</a>
+        </div>
 
-          <div class="contact-heading">
-            <h2>Let's Talk on WhatsApp</h2>
-            <p>
-              Have questions about our courses, registration or payment?
-              Reach out to our team directly.
-            </p>
-          </div>
+        <div class="course-card course-two">
+          <span class="course-number">PRODUCT 2</span>
+          <h3>Professional Graphic Design</h3>
+          <p>CorelDRAW, Photoshop, PixelLab and Canva.</p>
+          <div class="price">₦7,890</div>
+          <a class="course-link" href="product2.html">View Course →</a>
+        </div>
 
-          <div class="whatsapp-grid">
+        <div class="course-card course-three">
+          <span class="course-number">PRODUCT 3</span>
+          <h3>Mastering Data Analysis</h3>
+          <p>Excel, SQL, Power BI and Tableau.</p>
+          <div class="price">₦4,980</div>
+          <a class="course-link" href="product3.html">View Course →</a>
+        </div>
 
-            <div class="whatsapp-card">
-              <div class="wa-icon">✆</div>
-              <h3>WhatsApp Contact 1</h3>
-              <div class="phone">09011582752</div>
-              <a
-                class="wa-button"
-                href="https://wa.me/2349011582752"
-                target="_blank"
-                rel="noopener">
-                Chat on WhatsApp →
-              </a>
-            </div>
+        <div class="course-card course-four">
+          <span class="course-number">PRODUCT 4</span>
+          <h3>Web Development & Python</h3>
+          <p>HTML, CSS, JavaScript and Python programming.</p>
+          <div class="price">₦19,950</div>
+          <a class="course-link" href="product4.html">View Course →</a>
+        </div>
 
-            <div class="whatsapp-card">
-              <div class="wa-icon">✆</div>
-              <h3>WhatsApp Contact 2</h3>
-              <div class="phone">08115524304</div>
-              <a
-                class="wa-button"
-                href="https://wa.me/2348115524304"
-                target="_blank"
-                rel="noopener">
-                Chat on WhatsApp →
-              </a>
-            </div>
-
-          </div>
-
-          <div class="other-contact">
-
-            <a href="mailto:eleviq1@gmail.com">
-              ✉ eleviq1@gmail.com
-            </a>
-
-            <a
-              href="https://www.tiktok.com/@eleviq1"
-              target="_blank"
-              rel="noopener">
-              ♪ TikTok: @eleviq1
-            </a>
-
-          </div>
-
-        </section>
+        <div class="course-card course-five">
+          <span class="course-number">PRODUCT 5 · COMPLETE BUNDLE</span>
+          <h3>Complete Skills Bundle</h3>
+          <p>
+            Get all four learning programmes in one bundle.
+            Regular value: ₦38,000. Save ₦5,290.
+          </p>
+          <div class="price">₦32,710</div>
+          <a class="course-link" href="product5.html">
+            Explore Complete Bundle →
+          </a>
+        </div>
 
       </div>
     </section>
-  </main>
 
-  <footer>
-    <strong>ELEVIQ</strong><br>
-    Empowering learners with knowledge, skills and opportunities.<br>
-    © 2026 ELEVIQ. All rights reserved.
-  </footer>
+    <!-- WHATSAPP CONTACT -->
+
+    <section class="contact">
+
+      <div class="contact-heading">
+        <h2>Let's Connect on WhatsApp</h2>
+        <p>
+          Need assistance with registration, payment or our courses?
+          Choose the contact below to start a conversation.
+        </p>
+      </div>
+
+      <div class="whatsapp-grid">
+
+        <!-- BRAINBOI -->
+
+        <div class="whatsapp-card">
+          <div class="wa-icon">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 .5C7.45.5.5 7.45.5 16c0 2.73.72 5.4 2.08 7.75L.5 31.5l7.95-2.08A15.4 15.4 0 0 0 16 31.5c8.55 0 15.5-6.95 15.5-15.5S24.55.5 16 .5zm0 28.1c-2.35 0-4.65-.63-6.65-1.82l-.48-.28-4.72 1.24 1.26-4.6-.31-.5A12.6 12.6 0 1 1 16 28.6zm6.9-9.45c-.38-.19-2.24-1.1-2.59-1.23-.35-.13-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1.01-1.9-2.26-2.12-2.64-.22-.38-.02-.59.17-.78.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.66-.09-.19-.85-2.05-1.17-2.8-.31-.73-.63-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.35.38-1.32 1.29-1.32 3.15s1.35 3.65 1.54 3.9c.19.25 2.65 4.05 6.43 5.68.9.39 1.6.62 2.14.79.9.29 1.72.25 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.88.31-1.63.22-1.8-.09-.16-.35-.25-.73-.44z"/>
+            </svg>
+          </div>
+
+          <h3>Brainboi</h3>
+          <div class="phone">08115524304</div>
+
+          <a
+            class="wa-button"
+            href="https://wa.me/2348115524304"
+            target="_blank"
+            rel="noopener">
+            Chat with Brainboi →
+          </a>
+        </div>
+
+        <!-- EDUCATION -->
+
+        <div class="whatsapp-card">
+          <div class="wa-icon">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 .5C7.45.5.5 7.45.5 16c0 2.73.72 5.4 2.08 7.75L.5 31.5l7.95-2.08A15.4 15.4 0 0 0 16 31.5c8.55 0 15.5-6.95 15.5-15.5S24.55.5 16 .5zm0 28.1c-2.35 0-4.65-.63-6.65-1.82l-.48-.28-4.72 1.24 1.26-4.6-.31-.5A12.6 12.6 0 1 1 16 28.6zm6.9-9.45c-.38-.19-2.24-1.1-2.59-1.23-.35-.13-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1.01-1.9-2.26-2.12-2.64-.22-.38-.02-.59.17-.78.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.66-.09-.19-.85-2.05-1.17-2.8-.31-.73-.63-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.35.38-1.32 1.29-1.32 3.15s1.35 3.65 1.54 3.9c.19.25 2.65 4.05 6.43 5.68.9.39 1.6.62 2.14.79.9.29 1.72.25 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.88.31-1.63.22-1.8-.09-.16-.35-.25-.73-.44z"/>
+            </svg>
+          </div>
+
+          <h3>Education</h3>
+          <div class="phone">09011582752</div>
+
+          <a
+            class="wa-button"
+            href="https://wa.me/2349011582752"
+            target="_blank"
+            rel="noopener">
+            Chat with Education →
+          </a>
+        </div>
+
+      </div>
+
+      <div class="other-contact">
+
+        <a href="mailto:eleviq1@gmail.com">
+          ✉ eleviq1@gmail.com
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@eleviq1"
+          target="_blank"
+          rel="noopener">
+          ♪ TikTok: @eleviq1
+        </a>
+
+      </div>
+
+    </section>
+
+  </div>
+</section>
+</main>
+
+<footer>
+  <strong>ELEVIQ</strong><br>
+  Empowering learners with knowledge, skills and opportunities.<br>
+  © 2026 ELEVIQ. All rights reserved.
+</footer>
 
 </body>
 </html>
