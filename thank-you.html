@@ -1,23 +1,433 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1769e0">
-  <title>Thank You | ELEVIQ</title>
+
+  <title>Registration Received | ELEVIQ</title>
+
+  <meta name="description" content="Thank you for choosing ELEVIQ. Your registration interest has been received. We look forward to supporting your learning journey.">
+
   <style>
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:22px;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eef5ff,#f8fbff);color:#17345f}.card{width:100%;max-width:620px;background:#fff;border-radius:22px;padding:clamp(28px,6vw,52px);text-align:center;box-shadow:0 18px 55px rgba(11,63,152,.12)}.brand{font-size:25px;font-weight:900;letter-spacing:2px;color:#1769e0}.check{width:76px;height:76px;margin:24px auto 18px;border-radius:50%;display:grid;place-items:center;background:#e5f8ed;color:#138448;font-size:42px;font-weight:bold}h1{font-size:clamp(30px,7vw,42px);margin:12px 0;color:#0b3f98}p{line-height:1.7;color:#52647c;font-size:16px}.note{background:#f1f6ff;padding:16px;border-radius:12px;margin:24px 0}.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}.btn{display:inline-block;text-decoration:none;font-weight:bold;padding:14px 20px;border-radius:10px}.primary{background:#1769e0;color:#fff}.secondary{border:1px solid #1769e0;color:#1769e0}@media(max-width:420px){.actions{flex-direction:column}.btn{width:100%}}
+    :root {
+      --blue: #1769e0;
+      --dark: #0b3f98;
+      --text: #18345b;
+      --muted: #63748c;
+      --light: #f3f7ff;
+      --green: #15945b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3f7ff;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: #fff;
+      padding: 20px;
+      border-bottom: 1px solid #e8eef8;
+    }
+
+    .topbar-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--blue);
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 55px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(11, 63, 152, 0.10);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 50px 25px 38px;
+      background: linear-gradient(135deg, #eaf2ff, #f8fbff);
+    }
+
+    .success-icon {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #e0f7eb;
+      color: var(--green);
+      font-size: 45px;
+      font-weight: bold;
+      border: 5px solid #c8efda;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 43px);
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 540px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .content {
+      padding: 35px clamp(22px, 5vw, 45px) 42px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: var(--dark);
+      margin-bottom: 22px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 18px;
+    }
+
+    .step {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .number {
+      min-width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #eaf2ff;
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .notice {
+      margin-top: 30px;
+      padding: 18px;
+      border-radius: 13px;
+      background: #fff8e9;
+      border: 1px solid #f5e3b8;
+      color: #76541b;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-align: center;
+      padding: 15px 22px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    .primary {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .primary:hover {
+      background: var(--dark);
+    }
+
+    .secondary {
+      border: 1.5px solid var(--blue);
+      color: var(--blue);
+    }
+
+    .secondary:hover {
+      background: #edf4ff;
+    }
+
+    .contact {
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 1px solid #e8eef8;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 18px;
+      color: var(--dark);
+      margin-bottom: 9px;
+    }
+
+    .contact > p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .contact-links a {
+      background: var(--light);
+      color: var(--dark);
+      border: 1px solid #e0eaff;
+      padding: 11px 14px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 15px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer strong {
+      color: var(--blue);
+    }
+
+    @media(max-width: 520px) {
+      .topbar-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .main {
+        padding: 25px 13px;
+      }
+
+      .hero {
+        padding: 40px 20px 30px;
+      }
+
+      .content {
+        padding: 28px 20px 32px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .contact-links {
+        flex-direction: column;
+      }
+
+      .contact-links a {
+        width: 100%;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <main class="card">
-    <div class="brand">ELEVIQ</div>
-    <div class="check" aria-hidden="true">✓</div>
-    <h1>Thank You!</h1>
-    <p>Your Product 5 registration interest form has been submitted successfully.</p>
-    <div class="note"><strong>What happens next?</strong><p>Our team can review your details and contact you using the phone number or email address you provided. Submitting this form does not confirm payment or enrolment.</p></div>
-    <p>Thank you for choosing ELEVIQ to support your learning journey. Learn. Grow. Create. Innovate.</p>
-    <div class="actions"><a class="btn primary" href="product5.html">Back to Product 5</a><a class="btn secondary" href="https://brainboi2683.github.io/ELEVIQ/">Visit ELEVIQ Website</a></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="logo">ELEVIQ</div>
+      <div class="tagline">Learn. Grow. Create. Innovate.</div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="container">
+
+      <div class="hero">
+        <div class="success-icon" aria-hidden="true">✓</div>
+
+        <div class="eyebrow">Submission successful</div>
+
+        <h1>Thank You for Choosing ELEVIQ!</h1>
+
+        <p>
+          Your registration interest has been received.
+          We appreciate your interest in learning and growing with us.
+          Your next step towards acquiring valuable digital skills starts here.
+        </p>
+      </div>
+
+      <div class="content">
+
+        <h2 class="section-title">What happens next?</h2>
+
+        <div class="steps">
+
+          <div class="step">
+            <div class="number">1</div>
+            <div>
+              <h3>We receive your details</h3>
+              <p>
+                Your submitted information will be reviewed by our team.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="number">2</div>
+            <div>
+              <h3>We get in touch</h3>
+              <p>
+                We may contact you through your provided WhatsApp number
+                or email address to discuss your selected course.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="number">3</div>
+            <div>
+              <h3>Complete your enrolment</h3>
+              <p>
+                You will receive further information about payment,
+                learning arrangements and how to get started.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="notice">
+          <strong>Important information</strong>
+          Submitting this form indicates your interest in an ELEVIQ
+          learning programme. It does not automatically confirm payment,
+          admission or enrolment.
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://brainboi2683.github.io/ELEVIQ/">
+            Explore ELEVIQ
+          </a>
+
+          <a class="btn secondary" href="https://brainboi2683.github.io/ELEVIQ-LANDING-PAGES/">
+            Explore Our Courses
+          </a>
+        </div>
+
+        <div class="contact">
+          <h2>Need Help or Have Questions?</h2>
+
+          <p>
+            You can contact ELEVIQ directly through any of the channels below.
+          </p>
+
+          <div class="contact-links">
+            <a href="https://wa.me/2349011582752" target="_blank" rel="noopener">
+              WhatsApp: 09011582752
+            </a>
+
+            <a href="https://wa.me/2348115524304" target="_blank" rel="noopener">
+              WhatsApp: 08115524304
+            </a>
+
+            <a href="mailto:eleviq1@gmail.com">
+              eleviq1@gmail.com
+            </a>
+
+            <a href="https://www.tiktok.com/@eleviq1" target="_blank" rel="noopener">
+              TikTok: @eleviq1
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <strong>ELEVIQ</strong><br>
+    Empowering learners with knowledge, skills and opportunities.<br>
+    © 2026 ELEVIQ. All rights reserved.
+  </footer>
+
 </body>
 </html>
