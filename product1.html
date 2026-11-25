@@ -46,6 +46,8 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      position: relative;
+      z-index: 10;
     }
 
     .logo {
@@ -64,6 +66,8 @@
     .header-btn:hover {
       background: #0b3f98;
     }
+
+    /* HERO */
 
     .hero {
       background: linear-gradient(135deg, #071b3a, #1769e0);
@@ -105,10 +109,12 @@
       padding: 14px 25px;
       border-radius: 8px;
       font-weight: bold;
+      transition: 0.25s ease;
     }
 
     .cta:hover {
       background: #1eae55;
+      transform: translateY(-2px);
     }
 
     .hero-image {
@@ -118,6 +124,8 @@
       border-radius: 15px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.2);
     }
+
+    /* GENERAL SECTIONS */
 
     .section {
       padding: 65px 6%;
@@ -143,48 +151,93 @@
       font-size: 17px;
     }
 
+    /* COURSE IMAGE CARDS */
+
     .course-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
       margin-top: 35px;
     }
 
     .course-card {
-      background: white;
-      padding: 30px;
-      border-radius: 13px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-      border: 1px solid #e5edf8;
-      transition: 0.25s ease;
+      min-height: 285px;
+      padding: 25px;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: white;
+      background-size: cover;
+      background-position: center;
+      isolation: isolate;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .course-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        0deg,
+        rgba(5,24,58,0.96) 0%,
+        rgba(5,24,58,0.76) 48%,
+        rgba(5,24,58,0.12) 100%
+      );
     }
 
     .course-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(11,63,152,0.12);
+      box-shadow: 0 12px 28px rgba(11,63,152,0.18);
+    }
+
+    .course-one {
+      background-image: url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85");
+    }
+
+    .course-two {
+      background-image: url("https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1000&q=85");
+    }
+
+    .course-three {
+      background-image: url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=85");
+    }
+
+    .course-four {
+      background-image: url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85");
     }
 
     .course-number {
       display: inline-block;
-      background: #e8f1ff;
-      color: #1769e0;
-      padding: 5px 12px;
+      width: max-content;
+      background: rgba(255,255,255,0.19);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 7px 12px;
       border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 13px;
+      margin-bottom: 12px;
     }
 
     .course-card h3 {
-      color: #0b3f98;
-      font-size: 22px;
-      margin-bottom: 10px;
+      color: white;
+      font-size: 23px;
+      line-height: 1.35;
+      margin-bottom: 9px;
     }
 
     .course-card p {
-      color: #555;
-      font-size: 15px;
+      color: #edf3ff;
+      font-size: 14px;
+      line-height: 1.65;
     }
+
+    /* BENEFITS */
 
     .benefits {
       display: grid;
@@ -195,9 +248,10 @@
 
     .benefit {
       background: white;
-      padding: 23px;
+      padding: 25px;
       border-radius: 10px;
       box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+      border: 1px solid #e8eef6;
     }
 
     .benefit h3 {
@@ -210,6 +264,8 @@
       color: #555;
       font-size: 15px;
     }
+
+    /* OFFER */
 
     .offer {
       background: linear-gradient(135deg, #071b3a, #0b3f98);
@@ -235,6 +291,8 @@
       font-weight: bold;
       margin: 20px 0;
     }
+
+    /* REGISTRATION */
 
     .register {
       background: white;
@@ -295,6 +353,7 @@
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.25s ease;
     }
 
     .submit:hover {
@@ -313,6 +372,8 @@
       margin-top: 15px;
     }
 
+    /* FAQ */
+
     .faq-item {
       background: white;
       margin-bottom: 14px;
@@ -326,6 +387,8 @@
       margin-bottom: 8px;
     }
 
+    /* FOOTER */
+
     footer {
       background: #071b3a;
       color: white;
@@ -336,6 +399,8 @@
     footer p {
       margin: 5px 0;
     }
+
+    /* RESPONSIVE */
 
     @media (max-width: 850px) {
       .hero-container {
@@ -395,7 +460,12 @@
       }
 
       .course-card {
-        padding: 24px;
+        min-height: 250px;
+        padding: 22px;
+      }
+
+      .course-card h3 {
+        font-size: 21px;
       }
 
       .form-box {
@@ -411,11 +481,16 @@
 
 <body>
 
+  <!-- TOP BAR -->
+
   <div class="topbar">
     Build practical computer skills. Improve your productivity. Expand your opportunities.
   </div>
 
+  <!-- HEADER -->
+
   <header>
+
     <a href="https://brainboi2683.github.io/ELEVIQ/">
       <img
         src="https://brainboi2683.github.io/ELEVIQ/eleviq-logo.png"
@@ -424,16 +499,23 @@
       >
     </a>
 
-    <a href="#register" class="header-btn">Register Now</a>
+    <a href="#register" class="header-btn">
+      Register Now
+    </a>
+
   </header>
 
   <!-- HERO SECTION -->
 
   <section class="hero">
+
     <div class="hero-container">
 
       <div>
-        <h1>Product 1 — Master Computer & Office Skills</h1>
+
+        <h1>
+          Product 1 — Master Computer & Office Skills
+        </h1>
 
         <p>
           Become confident using a computer and master the essential
@@ -441,28 +523,39 @@
           employment and everyday productivity.
         </p>
 
-        <div class="price">₦4,980</div>
+        <div class="price">
+          ₦4,980
+        </div>
 
-        <a href="#register" class="cta">Start Learning Today</a>
+        <a href="#register" class="cta">
+          Start Learning Today
+        </a>
+
       </div>
 
       <div>
+
         <img
           src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85"
           alt="Computer and digital skills training"
           class="hero-image"
         >
+
       </div>
 
     </div>
+
   </section>
 
   <!-- INTRODUCTION -->
 
   <section class="section">
+
     <div class="container">
 
-      <h2 class="section-title">Develop Skills That Matter</h2>
+      <h2 class="section-title">
+        Develop Skills That Matter
+      </h2>
 
       <p class="section-intro">
         Knowing how to use a computer is an important skill in today's
@@ -472,14 +565,18 @@
       </p>
 
     </div>
+
   </section>
 
   <!-- WHAT YOU WILL LEARN -->
 
   <section class="section">
+
     <div class="container">
 
-      <h2 class="section-title">What You Will Learn</h2>
+      <h2 class="section-title">
+        What You Will Learn
+      </h2>
 
       <p class="section-intro">
         Learn four important areas of computer and office productivity.
@@ -487,53 +584,100 @@
 
       <div class="course-grid">
 
-        <div class="course-card">
-          <span class="course-number">MODULE 01</span>
-          <h3>Windows 10</h3>
+        <!-- MODULE 01: WINDOWS 10 -->
+
+        <div class="course-card course-one">
+
+          <span class="course-number">
+            MODULE 01
+          </span>
+
+          <h3>
+            Windows 10
+          </h3>
+
           <p>
-            Understand computer basics, desktop navigation, file
-            management, folders, settings and essential Windows operations.
+            Understand computer basics, desktop navigation,
+            file management, folders, settings and essential
+            Windows operations.
           </p>
+
         </div>
 
-        <div class="course-card">
-          <span class="course-number">MODULE 02</span>
-          <h3>Microsoft Word</h3>
+        <!-- MODULE 02: MICROSOFT WORD -->
+
+        <div class="course-card course-two">
+
+          <span class="course-number">
+            MODULE 02
+          </span>
+
+          <h3>
+            Microsoft Word
+          </h3>
+
           <p>
-            Create and format professional documents, letters, reports,
-            assignments, tables and other written materials.
+            Create and format professional documents, letters,
+            reports, assignments, tables and other written materials.
           </p>
+
         </div>
 
-        <div class="course-card">
-          <span class="course-number">MODULE 03</span>
-          <h3>Microsoft Excel</h3>
+        <!-- MODULE 03: MICROSOFT EXCEL -->
+
+        <div class="course-card course-three">
+
+          <span class="course-number">
+            MODULE 03
+          </span>
+
+          <h3>
+            Microsoft Excel
+          </h3>
+
           <p>
-            Organise information, work with spreadsheets, perform
-            calculations, use formulas and create useful tables.
+            Organise information, work with spreadsheets,
+            perform calculations, use formulas and create
+            useful tables.
           </p>
+
         </div>
 
-        <div class="course-card">
-          <span class="course-number">MODULE 04</span>
-          <h3>Microsoft PowerPoint</h3>
+        <!-- MODULE 04: MICROSOFT POWERPOINT -->
+
+        <div class="course-card course-four">
+
+          <span class="course-number">
+            MODULE 04
+          </span>
+
+          <h3>
+            Microsoft PowerPoint
+          </h3>
+
           <p>
-            Create attractive presentations, organise information
-            into slides and communicate ideas effectively.
+            Create attractive presentations, organise
+            information into slides and communicate
+            ideas effectively.
           </p>
+
         </div>
 
       </div>
 
     </div>
+
   </section>
 
   <!-- BENEFITS -->
 
   <section class="section">
+
     <div class="container">
 
-      <h2 class="section-title">What This Training Helps You Achieve</h2>
+      <h2 class="section-title">
+        What This Training Helps You Achieve
+      </h2>
 
       <div class="benefits">
 
@@ -588,35 +732,49 @@
       </div>
 
     </div>
+
   </section>
 
   <!-- PRICE OFFER -->
 
   <section class="section">
+
     <div class="container">
 
       <div class="offer">
-        <h2>Invest in Your Digital Skills</h2>
+
+        <h2>
+          Invest in Your Digital Skills
+        </h2>
 
         <p>
           Start developing essential computer and office skills
           with ELEVIQ.
         </p>
 
-        <div class="offer-price">₦4,980</div>
+        <div class="offer-price">
+          ₦4,980
+        </div>
 
-        <a href="#register" class="cta">Register for Product 1</a>
+        <a href="#register" class="cta">
+          Register for Product 1
+        </a>
+
       </div>
 
     </div>
+
   </section>
 
   <!-- REGISTRATION FORM -->
 
   <section class="section register" id="register">
+
     <div class="container">
 
-      <h2 class="section-title">Register for Product 1</h2>
+      <h2 class="section-title">
+        Register for Product 1
+      </h2>
 
       <p class="section-intro">
         Complete the form below to express your interest in the
@@ -628,7 +786,11 @@
         <form id="product1Form">
 
           <div class="form-group">
-            <label for="fullName">Full Name</label>
+
+            <label for="fullName">
+              Full Name
+            </label>
+
             <input
               type="text"
               id="fullName"
@@ -637,10 +799,15 @@
               autocomplete="name"
               required
             >
+
           </div>
 
           <div class="form-group">
-            <label for="phone">WhatsApp / Phone Number</label>
+
+            <label for="phone">
+              WhatsApp / Phone Number
+            </label>
+
             <input
               type="tel"
               id="phone"
@@ -649,10 +816,15 @@
               autocomplete="tel"
               required
             >
+
           </div>
 
           <div class="form-group">
-            <label for="email">Email Address</label>
+
+            <label for="email">
+              Email Address
+            </label>
+
             <input
               type="email"
               id="email"
@@ -661,10 +833,15 @@
               autocomplete="email"
               required
             >
+
           </div>
 
           <div class="form-group">
-            <label for="location">Location</label>
+
+            <label for="location">
+              Location
+            </label>
+
             <input
               type="text"
               id="location"
@@ -673,41 +850,91 @@
               autocomplete="address-level1"
               required
             >
+
           </div>
 
           <div class="form-group">
-            <label for="learningMode">Preferred Learning Mode</label>
 
-            <select id="learningMode" name="learningMode" required>
-              <option value="">Select an option</option>
-              <option value="Online">Online</option>
-              <option value="Physical">Physical</option>
-              <option value="Both">Both</option>
+            <label for="learningMode">
+              Preferred Learning Mode
+            </label>
+
+            <select
+              id="learningMode"
+              name="learningMode"
+              required
+            >
+
+              <option value="">
+                Select an option
+              </option>
+
+              <option value="Online">
+                Online
+              </option>
+
+              <option value="Physical">
+                Physical
+              </option>
+
+              <option value="Both">
+                Both
+              </option>
+
             </select>
+
           </div>
 
           <div class="form-group">
-            <label for="experience">Current Computer Experience</label>
 
-            <select id="experience" name="experience" required>
-              <option value="">Select an option</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Basic">Basic</option>
-              <option value="Intermediate">Intermediate</option>
+            <label for="experience">
+              Current Computer Experience
+            </label>
+
+            <select
+              id="experience"
+              name="experience"
+              required
+            >
+
+              <option value="">
+                Select an option
+              </option>
+
+              <option value="Beginner">
+                Beginner
+              </option>
+
+              <option value="Basic">
+                Basic
+              </option>
+
+              <option value="Intermediate">
+                Intermediate
+              </option>
+
             </select>
+
           </div>
 
           <div class="form-group">
-            <label for="message">Additional Message (Optional)</label>
+
+            <label for="message">
+              Additional Message (Optional)
+            </label>
 
             <textarea
               id="message"
               name="message"
               placeholder="Any questions or additional information?"
             ></textarea>
+
           </div>
 
-          <button type="submit" class="submit">
+          <button
+            type="submit"
+            class="submit"
+          >
             Submit Registration Interest
           </button>
 
@@ -720,65 +947,99 @@
       </div>
 
     </div>
+
   </section>
 
   <!-- FAQ -->
 
   <section class="section">
+
     <div class="container">
 
-      <h2 class="section-title">Frequently Asked Questions</h2>
+      <h2 class="section-title">
+        Frequently Asked Questions
+      </h2>
 
       <div class="faq-item">
-        <h3>Who is this course for?</h3>
+
+        <h3>
+          Who is this course for?
+        </h3>
+
         <p>
           It is suitable for beginners, students, job seekers,
           business owners and anyone interested in improving
           their computer skills.
         </p>
+
       </div>
 
       <div class="faq-item">
-        <h3>What will I learn?</h3>
+
+        <h3>
+          What will I learn?
+        </h3>
+
         <p>
           You will learn Windows 10, Microsoft Word, Microsoft Excel
           and Microsoft PowerPoint.
         </p>
+
       </div>
 
       <div class="faq-item">
-        <h3>How much does the course cost?</h3>
+
+        <h3>
+          How much does the course cost?
+        </h3>
+
         <p>
           Product 1 costs ₦4,980.
         </p>
+
       </div>
 
       <div class="faq-item">
-        <h3>Can a complete beginner register?</h3>
+
+        <h3>
+          Can a complete beginner register?
+        </h3>
+
         <p>
           Yes. The programme is designed to accommodate beginners
           and learners with basic computer knowledge.
         </p>
+
       </div>
 
       <div class="faq-item">
-        <h3>What happens after registration?</h3>
+
+        <h3>
+          What happens after registration?
+        </h3>
+
         <p>
           ELEVIQ will receive your registration interest and
           follow up with information about the next steps.
         </p>
+
       </div>
 
     </div>
+
   </section>
 
   <!-- FINAL CTA -->
 
   <section class="section">
+
     <div class="container">
 
       <div class="offer">
-        <h2>Ready to Improve Your Computer Skills?</h2>
+
+        <h2>
+          Ready to Improve Your Computer Skills?
+        </h2>
 
         <p>
           Take the first step towards becoming more digitally
@@ -787,24 +1048,36 @@
 
         <br><br>
 
-        <a href="#register" class="cta">Register Now</a>
+        <a href="#register" class="cta">
+          Register Now
+        </a>
+
       </div>
 
     </div>
+
   </section>
 
   <!-- FOOTER -->
 
   <footer>
-    <p>© 2026 ELEVIQ. All Rights Reserved.</p>
-    <p>Education • Skills • Opportunities</p>
+
+    <p>
+      © 2026 ELEVIQ. All Rights Reserved.
+    </p>
+
+    <p>
+      Education • Skills • Opportunities
+    </p>
+
   </footer>
 
   <!-- PRODUCT 1 REGISTRATION SCRIPT -->
 
   <script>
 
-    const product1Form = document.getElementById("product1Form");
+    const product1Form =
+      document.getElementById("product1Form");
 
     const SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbyxKJ-WoAX0gMCxOmGUUr9ezLIMWPUeXZGBrNTZ7-MCb44l5dpn0kd6mTGSayBPJxZpIQ/exec";
@@ -871,15 +1144,8 @@
 
       } finally {
 
-        if (product1Form.querySelector(".submit")) {
-
-          const button =
-            product1Form.querySelector(".submit");
-
-          button.disabled = false;
-          button.textContent = "Submit Registration Interest";
-
-        }
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Registration Interest";
 
       }
 
