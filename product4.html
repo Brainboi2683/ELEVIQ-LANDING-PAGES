@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -368,6 +369,11 @@
       background: #0b3f98;
     }
 
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
     .form-note {
       text-align: center;
       color: #777;
@@ -497,7 +503,7 @@
 
   <!-- HEADER -->
   <header>
-    <img src="eleviq-logo.png" alt="ELEVIQ Logo" class="logo">
+    <img src="https://brainboi2683.github.io/ELEVIQ/eleviq-logo.png" alt="ELEVIQ Logo" class="logo">
 
     <a href="#register" class="header-btn">
       Register Now
@@ -833,44 +839,13 @@
         registration interest and contact you with the next steps.
       </p>
 
-      <form
-        action="https://formsubmit.co/eleviq1@gmail.com"
-        method="POST"
-      >
-
-        <!-- FORM SUBMISSION SETTINGS -->
-        <input
-          type="hidden"
-          name="_subject"
-          value="ELEVIQ Product 4 — Web Development & Python Registration"
-        >
-
-        <input
-          type="hidden"
-          name="_next"
-          value="https://brainboi2683.github.io/ELEVIQ-LANDING-PAGES/thank-you.html"
-        >
-
-        <input
-          type="hidden"
-          name="_template"
-          value="table"
-        >
-
-        <!-- SPAM PROTECTION -->
-        <input
-          type="text"
-          name="_honey"
-          style="display:none"
-          tabindex="-1"
-          autocomplete="off"
-        >
+      <form id="product4Form">
 
         <label for="fullname">Full Name</label>
         <input
           type="text"
           id="fullname"
-          name="Full Name"
+          name="fullName"
           placeholder="Enter your full name"
           required
         >
@@ -879,7 +854,7 @@
         <input
           type="tel"
           id="phone"
-          name="WhatsApp / Phone Number"
+          name="phone"
           placeholder="Enter your WhatsApp or phone number"
           required
         >
@@ -888,7 +863,7 @@
         <input
           type="email"
           id="email"
-          name="Email Address"
+          name="email"
           placeholder="Enter your email address"
           required
         >
@@ -897,7 +872,7 @@
         <input
           type="text"
           id="location"
-          name="Location"
+          name="location"
           placeholder="City / State"
           required
         >
@@ -905,7 +880,7 @@
         <label for="learning">Preferred Learning Mode</label>
         <select
           id="learning"
-          name="Preferred Learning Mode"
+          name="learningMode"
           required
         >
           <option value="">Select an option</option>
@@ -917,7 +892,7 @@
         <label for="experience">Programming Experience</label>
         <select
           id="experience"
-          name="Programming Experience"
+          name="experience"
           required
         >
           <option value="">Select your experience level</option>
@@ -929,7 +904,7 @@
         <label for="device">Do You Have Access to a Computer?</label>
         <select
           id="device"
-          name="Computer Access"
+          name="device"
           required
         >
           <option value="">Select an option</option>
@@ -941,7 +916,7 @@
         <label for="message">Additional Information (Optional)</label>
         <textarea
           id="message"
-          name="Additional Information"
+          name="message"
           placeholder="Tell us anything else you would like us to know."
         ></textarea>
 
@@ -1061,9 +1036,87 @@
     </p>
   </footer>
 
+  <!-- PRODUCT 4 REGISTRATION SCRIPT -->
   <script>
     document.getElementById("year").textContent =
       new Date().getFullYear();
+
+    const product4Form = document.getElementById("product4Form");
+
+    const SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbyxKJ-WoAX0gMCxOmGUUr9ezLIMWPUeXZGBrNTZ7-MCb44l5dpn0kd6mTGSayBPJxZpIQ/exec";
+
+    product4Form.addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+      const submitButton =
+        product4Form.querySelector(".submit-btn");
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+
+      const formData = {
+
+        product:
+          "Product 4 — Web Development & Python — ₦19,950",
+
+        fullName:
+          document.getElementById("fullname").value,
+
+        phone:
+          document.getElementById("phone").value,
+
+        email:
+          document.getElementById("email").value,
+
+        location:
+          document.getElementById("location").value,
+
+        learningMode:
+          document.getElementById("learning").value,
+
+        experience:
+          document.getElementById("experience").value,
+
+        device:
+          document.getElementById("device").value,
+
+        message:
+          document.getElementById("message").value
+
+      };
+
+      try {
+
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(formData)
+        });
+
+        window.location.href =
+          "https://brainboi2683.github.io/ELEVIQ-LANDING-PAGES/thank-you.html";
+
+      } catch (error) {
+
+        alert(
+          "Something went wrong while submitting your registration. " +
+          "Please check your internet connection and try again."
+        );
+
+        console.error(error);
+
+      } finally {
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Registration";
+
+      }
+
+    });
   </script>
 
 </body>
