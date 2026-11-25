@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -235,6 +236,11 @@
       background: var(--dark);
     }
 
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
     .faq {
       background: var(--light);
     }
@@ -301,7 +307,7 @@
 
   <header>
     <div class="logo">
-      <img src="eleviq-logo.png" alt="ELEVIQ Logo">
+      <img src="https://brainboi2683.github.io/ELEVIQ/eleviq-logo.png" alt="ELEVIQ Logo">
       <span>ELEVIQ</span>
     </div>
     <a href="#register" class="header-link">Register Now</a>
@@ -371,36 +377,31 @@
       <h2>Register for Mastering Data Analysis</h2>
       <p>Complete the form below to begin your learning journey with ELEVIQ.</p>
 
-      <form action="https://formsubmit.co/eleviq1@gmail.com" method="POST">
-
-        <input type="hidden" name="_subject" value="New Product 3 Registration - Mastering Data Analysis">
-        <input type="hidden" name="_next" value="https://brainboi2683.github.io/ELEVIQ-LANDING-PAGES/thank-you.html">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" style="display:none">
+      <form id="product3Form">
 
         <div class="form-group">
           <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" name="Full Name" placeholder="Enter your full name" required>
+          <input type="text" id="fullname" name="fullName" placeholder="Enter your full name" required>
         </div>
 
         <div class="form-group">
           <label for="phone">WhatsApp / Phone Number</label>
-          <input type="tel" id="phone" name="WhatsApp / Phone Number" placeholder="Enter your phone number" required>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
         </div>
 
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="Email Address" placeholder="Enter your email address" required>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required>
         </div>
 
         <div class="form-group">
           <label for="location">Location</label>
-          <input type="text" id="location" name="Location" placeholder="Enter your state or city" required>
+          <input type="text" id="location" name="location" placeholder="Enter your state or city" required>
         </div>
 
         <div class="form-group">
           <label for="mode">Preferred Learning Mode</label>
-          <select id="mode" name="Preferred Learning Mode" required>
+          <select id="mode" name="learningMode" required>
             <option value="">Select learning mode</option>
             <option value="Online">Online</option>
             <option value="Physical">Physical</option>
@@ -410,7 +411,7 @@
 
         <div class="form-group">
           <label for="experience">Your Data Analysis Experience</label>
-          <select id="experience" name="Experience Level" required>
+          <select id="experience" name="experience" required>
             <option value="">Select your experience level</option>
             <option value="Beginner">Beginner - No experience</option>
             <option value="Basic">Basic knowledge</option>
@@ -420,7 +421,7 @@
 
         <div class="form-group">
           <label for="message">Additional Information (Optional)</label>
-          <textarea id="message" name="Additional Information" placeholder="Tell us anything else you would like us to know"></textarea>
+          <textarea id="message" name="message" placeholder="Tell us anything else you would like us to know"></textarea>
         </div>
 
         <button type="submit" class="submit-btn">Submit Registration</button>
@@ -480,6 +481,70 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const product3Form = document.getElementById("product3Form");
+
+    const SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbyxKJ-WoAX0gMCxOmGUUr9ezLIMWPUeXZGBrNTZ7-MCb44l5dpn0kd6mTGSayBPJxZpIQ/exec";
+
+    product3Form.addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+      const submitButton = product3Form.querySelector(".submit-btn");
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+
+      const formData = {
+
+        product: "Product 3 — Mastering Data Analysis — ₦4,980",
+
+        fullName: document.getElementById("fullname").value,
+
+        phone: document.getElementById("phone").value,
+
+        email: document.getElementById("email").value,
+
+        location: document.getElementById("location").value,
+
+        learningMode: document.getElementById("mode").value,
+
+        experience: document.getElementById("experience").value,
+
+        message: document.getElementById("message").value
+
+      };
+
+      try {
+
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(formData)
+        });
+
+        window.location.href =
+          "https://brainboi2683.github.io/ELEVIQ-LANDING-PAGES/thank-you.html";
+
+      } catch (error) {
+
+        alert(
+          "Something went wrong while submitting your registration. Please check your internet connection and try again."
+        );
+
+        console.error(error);
+
+      } finally {
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Registration";
+
+      }
+
+    });
   </script>
 
 </body>
