@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071b3a">
-
 <title>Registration Received | ELEVIQ</title>
 
 <style>
@@ -24,9 +23,7 @@
   padding:0;
 }
 
-html {
-  scroll-behavior:smooth;
-}
+html { scroll-behavior:smooth; }
 
 body {
   font-family:Arial,Helvetica,sans-serif;
@@ -35,9 +32,7 @@ body {
   overflow-x:hidden;
 }
 
-a {
-  text-decoration:none;
-}
+a { text-decoration:none; }
 
 /* HEADER */
 
@@ -68,7 +63,7 @@ a {
   letter-spacing:1px;
 }
 
-/* MOVING INFORMATION TICKER */
+/* MOVING TICKER */
 
 .ticker {
   background:var(--navy);
@@ -109,9 +104,7 @@ a {
 
 /* HERO */
 
-.main {
-  padding:45px 18px;
-}
+.main { padding:45px 18px; }
 
 .container {
   width:100%;
@@ -386,6 +379,8 @@ h1 {
   gap:15px;
 }
 
+/* CORRECTED COURSE IMAGE LAYERING */
+
 .course-card {
   min-height:255px;
   padding:22px;
@@ -396,23 +391,42 @@ h1 {
   flex-direction:column;
   justify-content:flex-end;
   color:white;
-  background-size:cover;
-  background-position:center;
+  background:#0b3f98;
   isolation:isolate;
-  transition:.3s;
+  transition:transform .3s,box-shadow .3s;
 }
 
+/* Actual image element */
+.course-card .course-bg {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  z-index:0;
+  transition:transform .6s ease;
+}
+
+/* Dark overlay ABOVE image */
 .course-card::before {
   content:"";
   position:absolute;
   inset:0;
-  z-index:-1;
+  z-index:1;
   background:linear-gradient(
     0deg,
-    rgba(5,24,58,.94) 0%,
-    rgba(5,24,58,.68) 48%,
-    rgba(5,24,58,.18) 100%
+    rgba(5,24,58,.96) 0%,
+    rgba(5,24,58,.70) 48%,
+    rgba(5,24,58,.20) 100%
   );
+  pointer-events:none;
+}
+
+/* Text and buttons ABOVE overlay */
+.course-card > :not(.course-bg) {
+  position:relative;
+  z-index:2;
 }
 
 .course-card:hover {
@@ -420,24 +434,11 @@ h1 {
   box-shadow:0 12px 28px rgba(11,63,152,.18);
 }
 
-.course-one {
-  background-image:url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85");
-}
-
-.course-two {
-  background-image:url("https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85");
-}
-
-.course-three {
-  background-image:url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85");
-}
-
-.course-four {
-  background-image:url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=85");
+.course-card:hover .course-bg {
+  transform:scale(1.07);
 }
 
 .course-five {
-  background-image:url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85");
   grid-column:1/-1;
   min-height:270px;
 }
@@ -489,9 +490,7 @@ h1 {
   transition:.2s;
 }
 
-.course-link:hover {
-  background:#dceaff;
-}
+.course-link:hover { background:#dceaff; }
 
 /* WHATSAPP */
 
@@ -581,9 +580,7 @@ h1 {
   transition:.2s;
 }
 
-.wa-button:hover {
-  background:#128c4d;
-}
+.wa-button:hover { background:#128c4d; }
 
 .other-contact {
   margin-top:17px;
@@ -624,22 +621,9 @@ h1 {
   animation:floatSymbol 9s ease-in-out infinite;
 }
 
-.symbol-one {
-  top:22%;
-  left:3%;
-}
-
-.symbol-two {
-  top:57%;
-  right:3%;
-  animation-delay:2s;
-}
-
-.symbol-three {
-  top:82%;
-  left:5%;
-  animation-delay:4s;
-}
+.symbol-one { top:22%; left:3%; }
+.symbol-two { top:57%; right:3%; animation-delay:2s; }
+.symbol-three { top:82%; left:5%; animation-delay:4s; }
 
 @keyframes floatSymbol {
   0%,100% {transform:translateY(0) rotate(0)}
@@ -667,9 +651,7 @@ footer {
   line-height:1.8;
 }
 
-footer strong {
-  color:var(--blue);
-}
+footer strong { color:var(--blue); }
 
 /* MOBILE */
 
@@ -679,21 +661,13 @@ footer strong {
     text-align:center;
   }
 
-  .logo {
-    width:135px;
-  }
+  .logo { width:135px; }
 
-  .main {
-    padding:24px 12px;
-  }
+  .main { padding:24px 12px; }
 
-  .hero {
-    padding:40px 19px 30px;
-  }
+  .hero { padding:40px 19px 30px; }
 
-  .content {
-    padding:27px 16px 32px;
-  }
+  .content { padding:27px 16px 32px; }
 
   .courses-grid,
   .whatsapp-grid,
@@ -701,25 +675,15 @@ footer strong {
     grid-template-columns:1fr;
   }
 
-  .course-five {
-    grid-column:auto;
-  }
+  .course-five { grid-column:auto; }
 
-  .course-card {
-    min-height:245px;
-  }
+  .course-card { min-height:245px; }
 
-  .stat-number {
-    font-size:28px;
-  }
+  .stat-number { font-size:28px; }
 
-  .stat-label {
-    font-size:10px;
-  }
+  .stat-label { font-size:10px; }
 
-  .ticker-item {
-    font-size:12px;
-  }
+  .ticker-item { font-size:12px; }
 }
 
 /* ACCESSIBILITY */
@@ -767,7 +731,6 @@ footer strong {
 
 <div class="ticker" aria-label="ELEVIQ services">
   <div class="ticker-track">
-
     <div class="ticker-group">
       <span class="ticker-item">DIGITAL SKILLS TRAINING</span>
       <span class="ticker-dot">✦</span>
@@ -795,22 +758,18 @@ footer strong {
       <span class="ticker-dot">✦</span>
       <span class="ticker-item">LEARN. GROW. INNOVATE.</span>
     </div>
-
   </div>
 </div>
 
 <!-- MAIN -->
 
 <main class="main">
-
 <section class="container">
 
   <!-- SUCCESS HERO -->
 
   <div class="hero">
-
     <div class="success-icon">✓</div>
-
     <div class="eyebrow">Submission successful</div>
 
     <h1>Thank You for Choosing ELEVIQ!</h1>
@@ -820,7 +779,6 @@ footer strong {
       We appreciate your interest in learning and growing with us.
       Your next step towards acquiring valuable digital skills starts here.
     </p>
-
   </div>
 
   <!-- ROTATING MESSAGE -->
@@ -841,11 +799,9 @@ footer strong {
     <!-- NEXT STEPS -->
 
     <section class="reveal">
-
       <h2 class="section-title">What happens next?</h2>
 
       <div class="steps">
-
         <div class="step">
           <div class="number">1</div>
           <div>
@@ -875,7 +831,6 @@ footer strong {
             </p>
           </div>
         </div>
-
       </div>
 
       <div class="notice">
@@ -884,19 +839,16 @@ footer strong {
         learning programme. It does not automatically confirm payment,
         admission or enrolment.
       </div>
-
     </section>
 
     <!-- ANIMATED STATISTICS -->
 
     <section class="stats-section reveal">
-
       <h2 class="stats-heading">
         Explore the ELEVIQ Learning Experience
       </h2>
 
       <div class="stats-grid">
-
         <div class="stat">
           <span class="stat-number" data-count="4">0</span>
           <span class="stat-label">Core Learning Programmes</span>
@@ -911,15 +863,12 @@ footer strong {
           <span class="stat-number" data-count="3">0</span>
           <span class="stat-label">Simple Enrolment Steps</span>
         </div>
-
       </div>
-
     </section>
 
     <!-- COURSES -->
 
     <section class="courses-section reveal">
-
       <h2 class="section-title">Explore Our Courses</h2>
 
       <p class="section-description">
@@ -929,7 +878,12 @@ footer strong {
 
       <div class="courses-grid">
 
-        <div class="course-card course-one">
+        <div class="course-card">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85"
+            alt="Computer and office skills"
+            loading="eager">
+
           <span class="course-number">PRODUCT 1</span>
           <h3>Master Computer & Office Skills</h3>
           <p>Windows 10, Microsoft Word, Excel and PowerPoint.</p>
@@ -937,7 +891,12 @@ footer strong {
           <a class="course-link" href="product1.html">View Course →</a>
         </div>
 
-        <div class="course-card course-two">
+        <div class="course-card">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85"
+            alt="Graphic design workspace"
+            loading="eager">
+
           <span class="course-number">PRODUCT 2</span>
           <h3>Professional Graphic Design</h3>
           <p>CorelDRAW, Photoshop, PixelLab and Canva.</p>
@@ -945,7 +904,12 @@ footer strong {
           <a class="course-link" href="product2.html">View Course →</a>
         </div>
 
-        <div class="course-card course-three">
+        <div class="course-card">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85"
+            alt="Data analysis dashboard"
+            loading="eager">
+
           <span class="course-number">PRODUCT 3</span>
           <h3>Mastering Data Analysis</h3>
           <p>Excel, SQL, Power BI and Tableau.</p>
@@ -953,7 +917,12 @@ footer strong {
           <a class="course-link" href="product3.html">View Course →</a>
         </div>
 
-        <div class="course-card course-four">
+        <div class="course-card">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=85"
+            alt="Web development and programming"
+            loading="eager">
+
           <span class="course-number">PRODUCT 4</span>
           <h3>Web Development & Python</h3>
           <p>HTML, CSS, JavaScript and Python programming.</p>
@@ -962,6 +931,11 @@ footer strong {
         </div>
 
         <div class="course-card course-five">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85"
+            alt="Complete digital skills bundle"
+            loading="eager">
+
           <span class="course-number">PRODUCT 5 · COMPLETE BUNDLE</span>
           <h3>Complete Skills Bundle</h3>
           <p>
@@ -975,13 +949,11 @@ footer strong {
         </div>
 
       </div>
-
     </section>
 
     <!-- WHATSAPP CONTACT -->
 
     <section class="contact reveal">
-
       <div class="contact-heading">
         <h2>Let's Connect on WhatsApp</h2>
         <p>
@@ -993,7 +965,6 @@ footer strong {
       <div class="whatsapp-grid">
 
         <div class="whatsapp-card">
-
           <div class="wa-icon">
             <svg viewBox="0 0 32 32" aria-hidden="true">
               <path d="M16 .5C7.45.5.5 7.45.5 16c0 2.73.72 5.4 2.08 7.75L.5 31.5l7.95-2.08A15.4 15.4 0 0 0 16 31.5c8.55 0 15.5-6.95 15.5-15.5S24.55.5 16 .5zm0 28.1c-2.35 0-4.65-.63-6.65-1.82l-.48-.28-4.72 1.24 1.26-4.6-.31-.5A12.6 12.6 0 1 1 16 28.6zm6.9-9.45c-.38-.19-2.24-1.1-2.59-1.23-.35-.13-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1.01-1.9-2.26-2.12-2.64-.22-.38-.02-.59.17-.78.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.66-.09-.19-.85-2.05-1.17-2.8-.31-.73-.63-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.35.38-1.32 1.29-1.32 3.15s1.35 3.65 1.54 3.9c.19.25 2.65 4.05 6.43 5.68.9.39 1.6.62 2.14.79.9.29 1.72.25 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.88.31-1.63.22-1.8-.09-.16-.35-.25-.73-.44z"/>
@@ -1003,18 +974,14 @@ footer strong {
           <h3>Brainboi</h3>
           <div class="phone">08115524304</div>
 
-          <a
-            class="wa-button"
-            href="https://wa.me/2348115524304"
-            target="_blank"
-            rel="noopener">
+          <a class="wa-button"
+             href="https://wa.me/2348115524304"
+             target="_blank" rel="noopener">
             Chat with Brainboi →
           </a>
-
         </div>
 
         <div class="whatsapp-card">
-
           <div class="wa-icon">
             <svg viewBox="0 0 32 32" aria-hidden="true">
               <path d="M16 .5C7.45.5.5 7.45.5 16c0 2.73.72 5.4 2.08 7.75L.5 31.5l7.95-2.08A15.4 15.4 0 0 0 16 31.5c8.55 0 15.5-6.95 15.5-15.5S24.55.5 16 .5zm0 28.1c-2.35 0-4.65-.63-6.65-1.82l-.48-.28-4.72 1.24 1.26-4.6-.31-.5A12.6 12.6 0 1 1 16 28.6zm6.9-9.45c-.38-.19-2.24-1.1-2.59-1.23-.35-.13-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1.01-1.9-2.26-2.12-2.64-.22-.38-.02-.59.17-.78.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.66-.09-.19-.85-2.05-1.17-2.8-.31-.73-.63-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.35.38-1.32 1.29-1.32 3.15s1.35 3.65 1.54 3.9c.19.25 2.65 4.05 6.43 5.68.9.39 1.6.62 2.14.79.9.29 1.72.25 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.88.31-1.63.22-1.8-.09-.16-.35-.25-.73-.44z"/>
@@ -1024,37 +991,28 @@ footer strong {
           <h3>Education</h3>
           <div class="phone">09011582752</div>
 
-          <a
-            class="wa-button"
-            href="https://wa.me/2349011582752"
-            target="_blank"
-            rel="noopener">
+          <a class="wa-button"
+             href="https://wa.me/2349011582752"
+             target="_blank" rel="noopener">
             Chat with Education →
           </a>
-
         </div>
 
       </div>
 
       <div class="other-contact">
-
         <a href="mailto:eleviq1@gmail.com">
           ✉ eleviq1@gmail.com
         </a>
 
-        <a
-          href="https://www.tiktok.com/@eleviq1"
-          target="_blank"
-          rel="noopener">
+        <a href="https://www.tiktok.com/@eleviq1"
+           target="_blank" rel="noopener">
           ♪ TikTok: @eleviq1
         </a>
-
       </div>
-
     </section>
 
   </div>
-
 </section>
 </main>
 
@@ -1083,46 +1041,32 @@ const messages = [
 
 let messageIndex = 0;
 
-const rotatingMessage =
-  document.getElementById("rotatingMessage");
+const rotatingMessage = document.getElementById("rotatingMessage");
 
 setInterval(function() {
-
   messageIndex = (messageIndex + 1) % messages.length;
 
   rotatingMessage.style.animation = "none";
-
   void rotatingMessage.offsetWidth;
 
   rotatingMessage.textContent = messages[messageIndex];
-
   rotatingMessage.style.animation = "messageFade .5s ease";
-
 }, 3500);
 
 
 /* SCROLL REVEAL */
 
-const revealElements =
-  document.querySelectorAll(".reveal");
+const revealElements = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
-
   const revealObserver = new IntersectionObserver(
     function(entries, observer) {
-
       entries.forEach(function(entry) {
-
         if (entry.isIntersecting) {
-
           entry.target.classList.add("visible");
-
           observer.unobserve(entry.target);
-
         }
-
       });
-
     },
     {threshold:0.12}
   );
@@ -1130,39 +1074,29 @@ if ("IntersectionObserver" in window) {
   revealElements.forEach(function(element) {
     revealObserver.observe(element);
   });
-
 } else {
-
   revealElements.forEach(function(element) {
     element.classList.add("visible");
   });
-
 }
 
 
 /* ANIMATED STATISTICS */
 
-const statNumbers =
-  document.querySelectorAll(".stat-number");
-
+const statNumbers = document.querySelectorAll(".stat-number");
 let statsStarted = false;
 
 function animateStats() {
-
   if (statsStarted) return;
 
   statsStarted = true;
 
   statNumbers.forEach(function(counter) {
-
     const target = Number(counter.dataset.count);
-
     const duration = 1200;
-
     const startTime = performance.now();
 
     function updateNumber(currentTime) {
-
       const progress = Math.min(
         (currentTime - startTime) / duration,
         1
@@ -1170,52 +1104,45 @@ function animateStats() {
 
       const eased = 1 - Math.pow(1 - progress, 3);
 
-      counter.textContent =
-        Math.round(target * eased);
+      counter.textContent = Math.round(target * eased);
 
       if (progress < 1) {
         requestAnimationFrame(updateNumber);
       }
-
     }
 
     requestAnimationFrame(updateNumber);
-
   });
-
 }
 
 if ("IntersectionObserver" in window) {
+  const statsSection = document.querySelector(".stats-section");
 
   const statsObserver = new IntersectionObserver(
     function(entries) {
-
       entries.forEach(function(entry) {
-
         if (entry.isIntersecting) {
-
           animateStats();
-
           statsObserver.disconnect();
-
         }
-
       });
-
     },
     {threshold:0.3}
   );
 
-  const statsSection =
-    document.querySelector(".stats-section");
-
   statsObserver.observe(statsSection);
-
 } else {
-
   animateStats();
-
 }
+
+
+/* COURSE IMAGE FALLBACK */
+
+document.querySelectorAll(".course-bg").forEach(function(img) {
+  img.addEventListener("error", function() {
+    this.style.display = "none";
+  });
+});
 
 </script>
 
