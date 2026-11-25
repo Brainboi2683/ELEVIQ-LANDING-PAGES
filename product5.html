@@ -521,110 +521,221 @@
       <p>Learn. Grow. Create. Innovate.</p>
     </div>
   </footer>
+    <script>
 
-  <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvt6uiG0sKM4qfikSFSm4OW84fZg__ChF-B8t_FHM2Xkwcu-_2_oT64TQlgqYHAiVyrw/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvt6uiG0sKM4qfikSFSm4OW84fZg__ChF-B8t_FHM2Xkwcu-_2_oT64TQlgqYHAiVyrw/exec";
 
-    const THANK_YOU_URL = "https://brainboi2683.github.io/ELEVIQ-LANDING-PAGES/thank-you.html";
+const THANK_YOU_URL = "https://brainboi2683.github.io/ELEVIQ-LANDING-PAGES/thank-you.html";
 
-    const form = document.getElementById("product5Form");
-    const submitBtn = document.getElementById("submitBtn");
+const form = document.getElementById("product5Form");
+const submitBtn = document.getElementById("submitBtn");
+const allSkills = document.getElementById("allSkills");
 
-    const allSkills = document.getElementById("allSkills");
+const individualSkills = document.querySelectorAll(
+  'input[name="skillInterests"]:not(#allSkills)'
+);
 
-    const individualSkills = document.querySelectorAll(
-      'input[name="skillInterests"]:not(#allSkills)'
+// Selecting all courses clears individual selections.
+allSkills.addEventListener("change", function () {
+  if (this.checked) {
+    individualSkills.forEach(choice => {
+      choice.checked = false;
+    });
+  }
+});
+
+// Selecting an individual course clears "All four courses".
+individualSkills.forEach(choice => {
+  choice.addEventListener("change", function () {
+    if (this.checked) {
+      allSkills.checked = false;
+    }
+  });
+});
+
+// Create a hidden iframe for the cross-origin form submission.
+const responseFrame = document.createElement("iframe");
+responseFrame.name = "eleviqRegistrationFrame";
+responseFrame.style.display = "none";
+responseFrame.title = "Registration response";
+document.body.appendChild(responseFrame);
+
+let submissionInProgress = false;
+let responseTimer = null;
+let activeToken = null;
+
+function createToken() {
+  if (window.crypto && window.crypto.randomUUID) {
+    return window.crypto.randomUUID();
+  }
+
+  return Date.now().toString(36) +
+    Math.random().toString(36).substring(2) +
+    Math.random().toString(36).substring(2);
+}
+
+function resetSubmitButton() {
+  submissionInProgress = false;
+  submitBtn.disabled = false;
+  submitBtn.textContent = "Submit Registration →";
+
+  if (responseTimer) {
+    clearTimeout(responseTimer);
+    responseTimer = null;
+  }
+}
+
+function handleRegistrationResponse(event) {
+  const result = event.data;
+
+  if (
+    !result ||
+    result.type === "unrelated-message" ||
+    typeof result !== "object" ||
+    result.token !== activeToken
+  ) {
+    return;
+  }
+
+  window.removeEventListener("message", handleRegistrationResponse);
+
+  if (responseTimer) {
+    clearTimeout(responseTimer);
+    responseTimer = null;
+  }
+
+  if (result.success === true && result.savedToSheet === true) {
+    submitBtn.textContent = "Registration Successful!";
+
+    // A failed notification email does not undo a saved registration.
+    if (result.notificationSent === false) {
+      console.warn(
+        "Registration saved, but notification email failed:",
+        result.notificationError
+      );
+    }
+
+    window.location.href = THANK_YOU_URL;
+    return;
+  }
+
+  resetSubmitButton();
+
+  alert(
+    result.message ||
+    "Your registration could not be saved. Please try again."
+  );
+}
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  if (submissionInProgress) {
+    return;
+  }
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  const selectedSkills = Array.from(
+    document.querySelectorAll(
+      'input[name="skillInterests"]:checked'
+    )
+  ).map(checkbox => checkbox.value);
+
+  if (selectedSkills.length === 0) {
+    alert("Please select at least one skill interest before submitting.");
+
+    document.querySelector("#register").scrollIntoView({
+      behavior: "smooth"
+    });
+
+    return;
+  }
+
+  const formData = {
+    product: "Product 5 - Master Digital, Creative and Tech Skills",
+    bundlePrice: "NGN 32,710",
+
+    fullName: document.getElementById("fullName").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    location: document.getElementById("location").value.trim(),
+
+    status: document.getElementById("status").value,
+    learningMode: document.getElementById("learningMode").value,
+    device: document.getElementById("device").value,
+    experience: document.getElementById("experience").value,
+    startDate: document.getElementById("startDate").value,
+
+    skillInterests: selectedSkills,
+
+    goal: document.getElementById("goal").value,
+    budget: document.getElementById("budget").value,
+    referral: document.getElementById("referral").value,
+    message: document.getElementById("message").value.trim(),
+
+    token: createToken()
+  };
+
+  activeToken = formData.token;
+  submissionInProgress = true;
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting Registration...";
+
+  // Listen for the confirmation sent by Google Apps Script.
+  window.addEventListener("message", handleRegistrationResponse);
+
+  // Submit through a hidden iframe so the browser does not need CORS access.
+  const hiddenForm = document.createElement("form");
+  hiddenForm.method = "POST";
+  hiddenForm.action = SCRIPT_URL;
+  hiddenForm.target = responseFrame.name;
+  hiddenForm.style.display = "none";
+
+  const payloadInput = document.createElement("input");
+  payloadInput.type = "hidden";
+  payloadInput.name = "payload";
+  payloadInput.value = JSON.stringify(formData);
+
+  hiddenForm.appendChild(payloadInput);
+  document.body.appendChild(hiddenForm);
+
+  try {
+    hiddenForm.submit();
+    hiddenForm.remove();
+  } catch (error) {
+    console.error("Submission error:", error);
+
+    hiddenForm.remove();
+    window.removeEventListener("message", handleRegistrationResponse);
+
+    resetSubmitButton();
+
+    alert(
+      "We could not send your registration. Please check your internet connection and try again."
     );
 
-    // Selecting all courses clears individual selections.
-    allSkills.addEventListener("change", function () {
-      if (this.checked) {
-        individualSkills.forEach(choice => {
-          choice.checked = false;
-        });
-      }
-    });
+    return;
+  }
 
-    // Selecting an individual course clears "All four courses".
-    individualSkills.forEach(choice => {
-      choice.addEventListener("change", function () {
-        if (this.checked) {
-          allSkills.checked = false;
-        }
-      });
-    });
+  // If no response arrives, do not falsely claim the registration succeeded.
+  responseTimer = setTimeout(function () {
+    window.removeEventListener("message", handleRegistrationResponse);
 
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
+    resetSubmitButton();
 
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      const selectedSkills = Array.from(
-        document.querySelectorAll('input[name="skillInterests"]:checked')
-      ).map(checkbox => checkbox.value);
-
-      if (selectedSkills.length === 0) {
-        alert("Please select at least one skill interest before submitting.");
-        document.querySelector("#register").scrollIntoView({
-          behavior: "smooth"
-        });
-        return;
-      }
-
-      const formData = {
-        product: "Product 5 - Master Digital, Creative and Tech Skills",
-        bundlePrice: "NGN 32,710",
-
-        fullName: document.getElementById("fullName").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        location: document.getElementById("location").value.trim(),
-
-        status: document.getElementById("status").value,
-        learningMode: document.getElementById("learningMode").value,
-        device: document.getElementById("device").value,
-        experience: document.getElementById("experience").value,
-        startDate: document.getElementById("startDate").value,
-
-        skillInterests: selectedSkills,
-
-        goal: document.getElementById("goal").value,
-        budget: document.getElementById("budget").value,
-        referral: document.getElementById("referral").value,
-        message: document.getElementById("message").value.trim()
-      };
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Submitting Registration...";
-
-      try {
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          },
-          body: JSON.stringify(formData)
-        });
-
-        // no-cors responses are opaque; the browser cannot verify
-        // whether Google Apps Script successfully saved the row.
-        window.location.href = THANK_YOU_URL;
-
-      } catch (error) {
-        console.error("Product 5 submission error:", error);
-
-        alert(
-          "We could not submit your registration. Please check your internet connection and try again."
-        );
-
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Registration →";
-      }
-    });
+    alert(
+      "We have not received confirmation from the registration server. " +
+      "Please check your internet connection and try again. " +
+      "If you are unsure whether your registration was saved, contact ELEVIQ before submitting again."
+    );
+  }, 60000);
+});
   </script>
 </body>
 </html>
+
