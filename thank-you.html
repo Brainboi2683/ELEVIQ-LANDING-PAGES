@@ -4,36 +4,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#1769e0">
+<meta name="theme-color" content="#071b3a">
 <title>Registration Received | ELEVIQ</title>
 
 <style>
 :root {
   --blue:#1769e0;
   --dark:#0b3f98;
+  --navy:#071b3a;
   --text:#18345b;
   --muted:#63748c;
   --green:#20b968;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-body{
+html { scroll-behavior:smooth; }
+
+body {
   font-family:Arial,Helvetica,sans-serif;
   background:#f3f7ff;
   color:var(--text);
-  min-height:100vh;
+  overflow-x:hidden;
 }
 
-a{text-decoration:none}
+a { text-decoration:none; }
 
-.topbar{
-  background:#fff;
-  padding:17px 20px;
+/* HEADER */
+
+.topbar {
+  background:white;
+  padding:15px 20px;
   border-bottom:1px solid #e8eef8;
 }
 
-.topbar-inner{
+.topbar-inner {
   max-width:1100px;
   margin:auto;
   display:flex;
@@ -42,42 +51,112 @@ a{text-decoration:none}
   gap:15px;
 }
 
-.logo{
-  display:block;
-  width:150px;
+.logo {
+  width:145px;
   max-height:65px;
   object-fit:contain;
 }
 
-.tagline{
+.tagline {
   font-size:12px;
   color:var(--muted);
+  letter-spacing:1px;
 }
 
-.main{
+/* MOVING TICKER */
+
+.ticker {
+  background:var(--navy);
+  color:white;
+  overflow:hidden;
+  padding:12px 0;
+  white-space:nowrap;
+}
+
+.ticker-track {
   display:flex;
-  justify-content:center;
-  padding:45px 18px;
+  width:max-content;
+  animation:marquee 32s linear infinite;
 }
 
-.container{
+.ticker-group {
+  display:flex;
+  align-items:center;
+  gap:35px;
+  padding-right:35px;
+}
+
+.ticker-item {
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+.ticker-dot {
+  color:#52a0ff;
+  font-size:18px;
+}
+
+@keyframes marquee {
+  from {transform:translateX(0)}
+  to {transform:translateX(-50%)}
+}
+
+/* HERO */
+
+.main { padding:45px 18px; }
+
+.container {
   width:100%;
-  max-width:850px;
-  background:#fff;
+  max-width:900px;
+  margin:auto;
+  background:white;
   border-radius:22px;
   overflow:hidden;
   box-shadow:0 20px 60px rgba(11,63,152,.10);
 }
 
-.hero{
+.hero {
+  position:relative;
+  overflow:hidden;
   text-align:center;
-  padding:50px 25px 38px;
+  padding:55px 25px 42px;
   background:linear-gradient(135deg,#eaf2ff,#f8fbff);
 }
 
-.success-icon{
-  width:82px;
-  height:82px;
+.hero::before,
+.hero::after {
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(23,105,224,.07);
+  pointer-events:none;
+  animation:float 7s ease-in-out infinite;
+}
+
+.hero::before {
+  width:180px;
+  height:180px;
+  top:-70px;
+  left:-55px;
+}
+
+.hero::after {
+  width:130px;
+  height:130px;
+  bottom:-55px;
+  right:-25px;
+  animation-delay:2s;
+}
+
+@keyframes float {
+  0%,100% {transform:translateY(0) rotate(0)}
+  50% {transform:translateY(-18px) rotate(12deg)}
+}
+
+.success-icon {
+  width:85px;
+  height:85px;
   margin:0 auto 22px;
   display:grid;
   place-items:center;
@@ -87,51 +166,117 @@ a{text-decoration:none}
   font-size:45px;
   font-weight:bold;
   border:5px solid #c8efda;
+  position:relative;
+  z-index:1;
+  animation:successPop .8s cubic-bezier(.17,.89,.32,1.5) both;
 }
 
-.eyebrow{
+@keyframes successPop {
+  from {transform:scale(0);opacity:0}
+  to {transform:scale(1);opacity:1}
+}
+
+.eyebrow {
   color:var(--blue);
   font-size:12px;
   font-weight:800;
   letter-spacing:2px;
   text-transform:uppercase;
   margin-bottom:12px;
+  position:relative;
+  z-index:1;
 }
 
-h1{
+h1 {
   font-size:clamp(29px,6vw,43px);
   line-height:1.2;
   color:var(--dark);
   margin-bottom:15px;
+  position:relative;
+  z-index:1;
 }
 
-.hero p{
-  max-width:550px;
+.hero p {
+  max-width:570px;
   margin:auto;
   color:var(--muted);
   font-size:15px;
   line-height:1.8;
+  position:relative;
+  z-index:1;
 }
 
-.content{
+/* ROTATING MESSAGE */
+
+.live-message {
+  background:#071b3a;
+  color:white;
+  padding:18px 20px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.live-label {
+  display:inline-block;
+  color:#7bb5ff;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  margin-bottom:7px;
+}
+
+.live-message p {
+  font-size:14px;
+  font-weight:600;
+  animation:messageFade .5s ease;
+}
+
+@keyframes messageFade {
+  from {opacity:0;transform:translateY(8px)}
+  to {opacity:1;transform:translateY(0)}
+}
+
+.live-dot {
+  display:inline-block;
+  width:8px;
+  height:8px;
+  background:#25d366;
+  border-radius:50%;
+  margin-right:7px;
+  box-shadow:0 0 0 5px rgba(37,211,102,.12);
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,100% {box-shadow:0 0 0 4px rgba(37,211,102,.12)}
+  50% {box-shadow:0 0 0 9px rgba(37,211,102,.02)}
+}
+
+/* CONTENT */
+
+.content {
   padding:35px clamp(20px,5vw,45px) 42px;
 }
 
-.section-title{
+.section-title {
   font-size:21px;
   color:var(--dark);
   margin-bottom:22px;
 }
 
-.steps{display:grid;gap:19px}
+.steps {
+  display:grid;
+  gap:19px;
+}
 
-.step{
+.step {
   display:flex;
   gap:15px;
   align-items:flex-start;
 }
 
-.number{
+.number {
   min-width:36px;
   height:36px;
   border-radius:50%;
@@ -142,18 +287,18 @@ h1{
   font-weight:800;
 }
 
-.step h3{
+.step h3 {
   font-size:15px;
   margin-bottom:6px;
 }
 
-.step p{
+.step p {
   color:var(--muted);
   font-size:14px;
   line-height:1.7;
 }
 
-.notice{
+.notice {
   margin-top:30px;
   padding:18px;
   border-radius:13px;
@@ -164,21 +309,63 @@ h1{
   line-height:1.7;
 }
 
-.notice strong{
+.notice strong {
   display:block;
   margin-bottom:5px;
   font-size:14px;
 }
 
-/* COURSE SECTION */
+/* ANIMATED STATISTICS */
 
-.courses-section{
+.stats-section {
+  margin-top:40px;
+  padding:27px 15px;
+  background:linear-gradient(135deg,#071b3a,#0b3f98);
+  border-radius:16px;
+  color:white;
+}
+
+.stats-heading {
+  text-align:center;
+  margin-bottom:22px;
+  font-size:16px;
+  color:#e5efff;
+}
+
+.stats-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.stat {
+  text-align:center;
+  padding:12px 5px;
+}
+
+.stat-number {
+  display:block;
+  font-size:34px;
+  font-weight:900;
+  color:white;
+  margin-bottom:5px;
+}
+
+.stat-label {
+  font-size:11px;
+  color:#c9dcff;
+  line-height:1.5;
+}
+
+/* COURSES */
+
+.courses-section {
   margin-top:42px;
   padding-top:32px;
   border-top:1px solid #e8eef8;
 }
 
-.section-description{
+.section-description {
   color:var(--muted);
   font-size:14px;
   line-height:1.7;
@@ -186,13 +373,15 @@ h1{
   margin-bottom:22px;
 }
 
-.courses-grid{
+.courses-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:15px;
 }
 
-.course-card{
+/* CORRECTED COURSE IMAGE LAYERING */
+
+.course-card {
   min-height:255px;
   padding:22px;
   border-radius:15px;
@@ -201,59 +390,65 @@ h1{
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  color:#fff;
-  background-size:cover;
-  background-position:center;
+  color:white;
+  background:#0b3f98;
   isolation:isolate;
-  transition:.25s;
+  transition:transform .3s,box-shadow .3s;
 }
 
-.course-card::before{
+/* Actual image element */
+.course-card .course-bg {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  z-index:0;
+  transition:transform .6s ease;
+}
+
+/* Dark overlay ABOVE image */
+.course-card::before {
   content:"";
   position:absolute;
   inset:0;
-  z-index:-1;
+  z-index:1;
   background:linear-gradient(
     0deg,
-    rgba(5,24,58,.94) 0%,
-    rgba(5,24,58,.68) 48%,
-    rgba(5,24,58,.18) 100%
+    rgba(5,24,58,.96) 0%,
+    rgba(5,24,58,.70) 48%,
+    rgba(5,24,58,.20) 100%
   );
+  pointer-events:none;
 }
 
-.course-card:hover{
-  transform:translateY(-4px);
+/* Text and buttons ABOVE overlay */
+.course-card > :not(.course-bg) {
+  position:relative;
+  z-index:2;
+}
+
+.course-card:hover {
+  transform:translateY(-5px);
   box-shadow:0 12px 28px rgba(11,63,152,.18);
 }
 
-.course-one{
-  background-image:url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85");
+.course-card:hover .course-bg {
+  transform:scale(1.07);
 }
 
-.course-two{
-  background-image:url("https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85");
-}
-
-.course-three{
-  background-image:url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85");
-}
-
-.course-four{
-  background-image:url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=85");
-}
-
-.course-five{
-  background-image:url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85");
+.course-five {
   grid-column:1/-1;
   min-height:270px;
 }
 
-.course-number{
+.course-number {
   display:inline-block;
   width:max-content;
   background:rgba(255,255,255,.19);
   border:1px solid rgba(255,255,255,.3);
-  color:#fff;
+  color:white;
   font-size:11px;
   font-weight:800;
   padding:7px 11px;
@@ -261,91 +456,89 @@ h1{
   margin-bottom:12px;
 }
 
-.course-card h3{
+.course-card h3 {
   font-size:19px;
   line-height:1.4;
   margin-bottom:9px;
-  color:#fff;
+  color:white;
 }
 
-.course-card p{
+.course-card p {
   font-size:13px;
   line-height:1.65;
   color:#edf3ff;
   margin-bottom:13px;
 }
 
-.price{
+.price {
   font-size:20px;
   font-weight:900;
-  color:#fff;
+  color:white;
   margin-bottom:15px;
 }
 
-.course-link{
+.course-link {
   display:block;
   width:100%;
   text-align:center;
   padding:12px;
   border-radius:8px;
-  background:#fff;
+  background:white;
   color:var(--dark);
   font-size:13px;
   font-weight:800;
   transition:.2s;
 }
 
-.course-link:hover{
-  background:#dceaff;
-}
+.course-link:hover { background:#dceaff; }
 
-/* WHATSAPP SECTION */
+/* WHATSAPP */
 
-.contact{
+.contact {
   margin-top:42px;
   padding-top:32px;
   border-top:1px solid #e8eef8;
 }
 
-.contact-heading{
+.contact-heading {
   text-align:center;
   margin-bottom:24px;
 }
 
-.contact-heading h2{
+.contact-heading h2 {
   font-size:22px;
   color:var(--dark);
   margin-bottom:9px;
 }
 
-.contact-heading p{
+.contact-heading p {
   font-size:13px;
   line-height:1.7;
   color:var(--muted);
 }
 
-.whatsapp-grid{
+.whatsapp-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:16px;
 }
 
-.whatsapp-card{
+.whatsapp-card {
   border:1px solid #d9f1e3;
   background:linear-gradient(145deg,#effff5,#fff);
   border-radius:16px;
   padding:23px 17px;
   text-align:center;
-  transition:.2s;
+  transition:.25s;
 }
 
-.whatsapp-card:hover{
+.whatsapp-card:hover {
   border-color:var(--green);
   box-shadow:0 10px 25px rgba(32,185,104,.12);
-  transform:translateY(-3px);
+  transform:translateY(-4px);
 }
 
-.wa-icon{
+.wa-icon {
   width:55px;
   height:55px;
   margin:0 auto 13px;
@@ -356,30 +549,30 @@ h1{
   color:#128c4d;
 }
 
-.wa-icon svg{
+.wa-icon svg {
   width:29px;
   height:29px;
   fill:currentColor;
 }
 
-.whatsapp-card h3{
+.whatsapp-card h3 {
   color:#174c31;
   font-size:17px;
   margin-bottom:8px;
 }
 
-.phone{
+.phone {
   color:#526b5c;
   font-size:14px;
   margin-bottom:17px;
   font-weight:700;
 }
 
-.wa-button{
+.wa-button {
   display:block;
   width:100%;
   background:#20b968;
-  color:#fff;
+  color:white;
   padding:13px 10px;
   border-radius:9px;
   font-size:13px;
@@ -387,16 +580,16 @@ h1{
   transition:.2s;
 }
 
-.wa-button:hover{background:#128c4d}
+.wa-button:hover { background:#128c4d; }
 
-.other-contact{
+.other-contact {
   margin-top:17px;
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
 }
 
-.other-contact a{
+.other-contact a {
   display:flex;
   align-items:center;
   justify-content:center;
@@ -412,68 +605,171 @@ h1{
   overflow-wrap:anywhere;
 }
 
-.other-contact a:hover{
+.other-contact a:hover {
   border-color:var(--blue);
   background:#edf4ff;
 }
 
-footer{
+/* FLOATING BACKGROUND GRAPHICS */
+
+.floating-symbol {
+  position:fixed;
+  z-index:-1;
+  pointer-events:none;
+  font-size:25px;
+  opacity:.12;
+  animation:floatSymbol 9s ease-in-out infinite;
+}
+
+.symbol-one { top:22%; left:3%; }
+.symbol-two { top:57%; right:3%; animation-delay:2s; }
+.symbol-three { top:82%; left:5%; animation-delay:4s; }
+
+@keyframes floatSymbol {
+  0%,100% {transform:translateY(0) rotate(0)}
+  50% {transform:translateY(-35px) rotate(15deg)}
+}
+
+/* SCROLL REVEAL */
+
+.reveal {
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+footer {
   text-align:center;
-  padding:24px 15px;
+  padding:25px 15px;
   color:var(--muted);
   font-size:12px;
   line-height:1.8;
 }
 
-footer strong{color:var(--blue)}
+footer strong { color:var(--blue); }
 
-@media(max-width:560px){
-  .topbar-inner{
+/* MOBILE */
+
+@media(max-width:560px) {
+  .topbar-inner {
     flex-direction:column;
     text-align:center;
   }
 
-  .logo{width:135px}
+  .logo { width:135px; }
 
-  .main{padding:24px 12px}
+  .main { padding:24px 12px; }
 
-  .hero{padding:40px 19px 30px}
+  .hero { padding:40px 19px 30px; }
 
-  .content{padding:27px 16px 32px}
+  .content { padding:27px 16px 32px; }
 
   .courses-grid,
   .whatsapp-grid,
-  .other-contact{
+  .other-contact {
     grid-template-columns:1fr;
   }
 
-  .course-five{
-    grid-column:auto;
+  .course-five { grid-column:auto; }
+
+  .course-card { min-height:245px; }
+
+  .stat-number { font-size:28px; }
+
+  .stat-label { font-size:10px; }
+
+  .ticker-item { font-size:12px; }
+}
+
+/* ACCESSIBILITY */
+
+@media(prefers-reduced-motion:reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
   }
 
-  .course-card{min-height:245px}
+  .reveal {
+    opacity:1;
+    transform:none;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- FLOATING GRAPHICS -->
+
+<div class="floating-symbol symbol-one">✦</div>
+<div class="floating-symbol symbol-two">⌘</div>
+<div class="floating-symbol symbol-three">◈</div>
+
+<!-- HEADER -->
+
 <header class="topbar">
   <div class="topbar-inner">
     <img
       class="logo"
-      src="eleviq-logo.png"
+      src="https://brainboi2683.github.io/ELEVIQ/eleviq-logo.png"
       alt="ELEVIQ Logo"
     >
     <div class="tagline">Learn. Grow. Create. Innovate.</div>
   </div>
 </header>
 
+<!-- MOVING TICKER -->
+
+<div class="ticker" aria-label="ELEVIQ services">
+  <div class="ticker-track">
+    <div class="ticker-group">
+      <span class="ticker-item">DIGITAL SKILLS TRAINING</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">ADMISSION GUIDANCE</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">SCHOLARSHIP OPPORTUNITIES</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">ONLINE REGISTRATION</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">EXAMINATION SUPPORT</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">LEARN. GROW. INNOVATE.</span>
+    </div>
+
+    <div class="ticker-group" aria-hidden="true">
+      <span class="ticker-item">DIGITAL SKILLS TRAINING</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">ADMISSION GUIDANCE</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">SCHOLARSHIP OPPORTUNITIES</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">ONLINE REGISTRATION</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">EXAMINATION SUPPORT</span>
+      <span class="ticker-dot">✦</span>
+      <span class="ticker-item">LEARN. GROW. INNOVATE.</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+
 <main class="main">
 <section class="container">
 
+  <!-- SUCCESS HERO -->
+
   <div class="hero">
-    <div class="success-icon" aria-hidden="true">✓</div>
+    <div class="success-icon">✓</div>
     <div class="eyebrow">Submission successful</div>
 
     <h1>Thank You for Choosing ELEVIQ!</h1>
@@ -485,55 +781,94 @@ footer strong{color:var(--blue)}
     </p>
   </div>
 
+  <!-- ROTATING MESSAGE -->
+
+  <div class="live-message">
+    <div class="live-label">
+      <span class="live-dot"></span>
+      DISCOVER ELEVIQ
+    </div>
+
+    <p id="rotatingMessage" aria-live="polite">
+      Your journey towards digital growth starts here.
+    </p>
+  </div>
+
   <div class="content">
 
-    <h2 class="section-title">What happens next?</h2>
+    <!-- NEXT STEPS -->
 
-    <div class="steps">
+    <section class="reveal">
+      <h2 class="section-title">What happens next?</h2>
 
-      <div class="step">
-        <div class="number">1</div>
-        <div>
-          <h3>We receive your details</h3>
-          <p>Your submitted information will be reviewed by our team.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="number">1</div>
+          <div>
+            <h3>We receive your details</h3>
+            <p>Your submitted information will be reviewed by our team.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="number">2</div>
+          <div>
+            <h3>We get in touch</h3>
+            <p>
+              We may contact you through your provided WhatsApp number
+              or email address to discuss your selected course.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="number">3</div>
+          <div>
+            <h3>Complete your enrolment</h3>
+            <p>
+              You will receive further information about payment,
+              learning arrangements and how to get started.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div class="step">
-        <div class="number">2</div>
-        <div>
-          <h3>We get in touch</h3>
-          <p>
-            We may contact you through your provided WhatsApp number
-            or email address to discuss your selected course.
-          </p>
+      <div class="notice">
+        <strong>Important information</strong>
+        Submitting this form indicates your interest in an ELEVIQ
+        learning programme. It does not automatically confirm payment,
+        admission or enrolment.
+      </div>
+    </section>
+
+    <!-- ANIMATED STATISTICS -->
+
+    <section class="stats-section reveal">
+      <h2 class="stats-heading">
+        Explore the ELEVIQ Learning Experience
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-number" data-count="4">0</span>
+          <span class="stat-label">Core Learning Programmes</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-number" data-count="5">0</span>
+          <span class="stat-label">Learning Packages</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-number" data-count="3">0</span>
+          <span class="stat-label">Simple Enrolment Steps</span>
         </div>
       </div>
+    </section>
 
-      <div class="step">
-        <div class="number">3</div>
-        <div>
-          <h3>Complete your enrolment</h3>
-          <p>
-            You will receive further information about payment,
-            learning arrangements and how to get started.
-          </p>
-        </div>
-      </div>
+    <!-- COURSES -->
 
-    </div>
-
-    <div class="notice">
-      <strong>Important information</strong>
-      Submitting this form indicates your interest in an ELEVIQ
-      learning programme. It does not automatically confirm payment,
-      admission or enrolment.
-    </div>
-
-    <!-- EXPLORE OUR COURSES -->
-
-    <section class="courses-section">
-
+    <section class="courses-section reveal">
       <h2 class="section-title">Explore Our Courses</h2>
 
       <p class="section-description">
@@ -543,7 +878,12 @@ footer strong{color:var(--blue)}
 
       <div class="courses-grid">
 
-        <div class="course-card course-one">
+        <div class="course-card">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85"
+            alt="Computer and office skills"
+            loading="eager">
+
           <span class="course-number">PRODUCT 1</span>
           <h3>Master Computer & Office Skills</h3>
           <p>Windows 10, Microsoft Word, Excel and PowerPoint.</p>
@@ -551,7 +891,12 @@ footer strong{color:var(--blue)}
           <a class="course-link" href="product1.html">View Course →</a>
         </div>
 
-        <div class="course-card course-two">
+        <div class="course-card">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85"
+            alt="Graphic design workspace"
+            loading="eager">
+
           <span class="course-number">PRODUCT 2</span>
           <h3>Professional Graphic Design</h3>
           <p>CorelDRAW, Photoshop, PixelLab and Canva.</p>
@@ -559,7 +904,12 @@ footer strong{color:var(--blue)}
           <a class="course-link" href="product2.html">View Course →</a>
         </div>
 
-        <div class="course-card course-three">
+        <div class="course-card">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85"
+            alt="Data analysis dashboard"
+            loading="eager">
+
           <span class="course-number">PRODUCT 3</span>
           <h3>Mastering Data Analysis</h3>
           <p>Excel, SQL, Power BI and Tableau.</p>
@@ -567,7 +917,12 @@ footer strong{color:var(--blue)}
           <a class="course-link" href="product3.html">View Course →</a>
         </div>
 
-        <div class="course-card course-four">
+        <div class="course-card">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=85"
+            alt="Web development and programming"
+            loading="eager">
+
           <span class="course-number">PRODUCT 4</span>
           <h3>Web Development & Python</h3>
           <p>HTML, CSS, JavaScript and Python programming.</p>
@@ -576,6 +931,11 @@ footer strong{color:var(--blue)}
         </div>
 
         <div class="course-card course-five">
+          <img class="course-bg"
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85"
+            alt="Complete digital skills bundle"
+            loading="eager">
+
           <span class="course-number">PRODUCT 5 · COMPLETE BUNDLE</span>
           <h3>Complete Skills Bundle</h3>
           <p>
@@ -593,8 +953,7 @@ footer strong{color:var(--blue)}
 
     <!-- WHATSAPP CONTACT -->
 
-    <section class="contact">
-
+    <section class="contact reveal">
       <div class="contact-heading">
         <h2>Let's Connect on WhatsApp</h2>
         <p>
@@ -604,8 +963,6 @@ footer strong{color:var(--blue)}
       </div>
 
       <div class="whatsapp-grid">
-
-        <!-- BRAINBOI -->
 
         <div class="whatsapp-card">
           <div class="wa-icon">
@@ -617,16 +974,12 @@ footer strong{color:var(--blue)}
           <h3>Brainboi</h3>
           <div class="phone">08115524304</div>
 
-          <a
-            class="wa-button"
-            href="https://wa.me/2348115524304"
-            target="_blank"
-            rel="noopener">
+          <a class="wa-button"
+             href="https://wa.me/2348115524304"
+             target="_blank" rel="noopener">
             Chat with Brainboi →
           </a>
         </div>
-
-        <!-- EDUCATION -->
 
         <div class="whatsapp-card">
           <div class="wa-icon">
@@ -638,11 +991,9 @@ footer strong{color:var(--blue)}
           <h3>Education</h3>
           <div class="phone">09011582752</div>
 
-          <a
-            class="wa-button"
-            href="https://wa.me/2349011582752"
-            target="_blank"
-            rel="noopener">
+          <a class="wa-button"
+             href="https://wa.me/2349011582752"
+             target="_blank" rel="noopener">
             Chat with Education →
           </a>
         </div>
@@ -650,31 +1001,150 @@ footer strong{color:var(--blue)}
       </div>
 
       <div class="other-contact">
-
         <a href="mailto:eleviq1@gmail.com">
           ✉ eleviq1@gmail.com
         </a>
 
-        <a
-          href="https://www.tiktok.com/@eleviq1"
-          target="_blank"
-          rel="noopener">
+        <a href="https://www.tiktok.com/@eleviq1"
+           target="_blank" rel="noopener">
           ♪ TikTok: @eleviq1
         </a>
-
       </div>
-
     </section>
 
   </div>
 </section>
 </main>
 
+<!-- FOOTER -->
+
 <footer>
   <strong>ELEVIQ</strong><br>
   Empowering learners with knowledge, skills and opportunities.<br>
   © 2026 ELEVIQ. All rights reserved.
 </footer>
+
+<!-- ANIMATION JAVASCRIPT -->
+
+<script>
+
+/* ROTATING INFORMATION */
+
+const messages = [
+  "Your journey towards digital growth starts here.",
+  "Learn practical digital skills with ELEVIQ.",
+  "Explore educational and learning opportunities.",
+  "Build your confidence. Develop your skills. Grow.",
+  "Your next opportunity could begin with what you learn today.",
+  "ELEVIQ — Empowering learners with knowledge, skills and opportunities."
+];
+
+let messageIndex = 0;
+
+const rotatingMessage = document.getElementById("rotatingMessage");
+
+setInterval(function() {
+  messageIndex = (messageIndex + 1) % messages.length;
+
+  rotatingMessage.style.animation = "none";
+  void rotatingMessage.offsetWidth;
+
+  rotatingMessage.textContent = messages[messageIndex];
+  rotatingMessage.style.animation = "messageFade .5s ease";
+}, 3500);
+
+
+/* SCROLL REVEAL */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {threshold:0.12}
+  );
+
+  revealElements.forEach(function(element) {
+    revealObserver.observe(element);
+  });
+} else {
+  revealElements.forEach(function(element) {
+    element.classList.add("visible");
+  });
+}
+
+
+/* ANIMATED STATISTICS */
+
+const statNumbers = document.querySelectorAll(".stat-number");
+let statsStarted = false;
+
+function animateStats() {
+  if (statsStarted) return;
+
+  statsStarted = true;
+
+  statNumbers.forEach(function(counter) {
+    const target = Number(counter.dataset.count);
+    const duration = 1200;
+    const startTime = performance.now();
+
+    function updateNumber(currentTime) {
+      const progress = Math.min(
+        (currentTime - startTime) / duration,
+        1
+      );
+
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      counter.textContent = Math.round(target * eased);
+
+      if (progress < 1) {
+        requestAnimationFrame(updateNumber);
+      }
+    }
+
+    requestAnimationFrame(updateNumber);
+  });
+}
+
+if ("IntersectionObserver" in window) {
+  const statsSection = document.querySelector(".stats-section");
+
+  const statsObserver = new IntersectionObserver(
+    function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateStats();
+          statsObserver.disconnect();
+        }
+      });
+    },
+    {threshold:0.3}
+  );
+
+  statsObserver.observe(statsSection);
+} else {
+  animateStats();
+}
+
+
+/* COURSE IMAGE FALLBACK */
+
+document.querySelectorAll(".course-bg").forEach(function(img) {
+  img.addEventListener("error", function() {
+    this.style.display = "none";
+  });
+});
+
+</script>
 
 </body>
 </html>
