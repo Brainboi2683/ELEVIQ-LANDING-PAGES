@@ -604,10 +604,13 @@ function handleRegistrationResponse(event) {
     responseTimer = null;
   }
 
-  if (result.success === true && result.savedToSheet === true) {
-    submitBtn.textContent = "Registration Successful!";
+ if (result.success === true && result.savedToSheet === true) {
+  submitBtn.textContent = "Registration Successful!";
 
-    // A failed notification email does not undo a saved registration.
+  // Record a successful registration for Meta Pixel.
+  sessionStorage.setItem("eleviq_lead_pending", "1");
+
+  // A failed notification email does not undo a saved registration.
     if (result.notificationSent === false) {
       console.warn(
         "Registration saved, but notification email failed:",
